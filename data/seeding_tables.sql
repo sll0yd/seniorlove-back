@@ -1,5 +1,9 @@
+-- seeding_tables.sql --
+
+-- BEGIN is used to start a new transaction --
 BEGIN;
 
+-- Below blocks are to seed tables in database with random data --
 INSERT INTO "users" ("userName", "gender", "picture", "email", "password", "age", "hometown", "bio")
 VALUES
   ('Alice', 'F', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', '4o4oO1@example.com', 'password1', 25, 'New York', 'Hello, I am Alice!'),
@@ -45,4 +49,5 @@ VALUES
   (1, 9, 'I talked with him')
   ;
 
+-- COMMIT is to end the transaction --
 COMMIT;
