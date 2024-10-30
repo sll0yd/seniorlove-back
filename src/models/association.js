@@ -3,6 +3,8 @@ import { Users } from "./users.model.js";
 import { Event } from "./event.model.js";
 import { Message } from "./message.model.js";
 import { Tag } from "./tag.model.js";
+import { Testimony } from "./testimony.model.js";
+import { Sentence } from "./sentence.model.js";
 
 // A belongs to many B through C as <refersToB>, foreignKey A_id
 // A has many B foreignKey A_id
@@ -67,4 +69,4 @@ Message.belongsTo(Users, {
 });
 
 // Export all models and associations to be used in src/models/index.js
-export { sequelize, Users, Event, Tag, Message };
+export { sequelize, Users, Event, Tag, Message, Testimony, Sentence };
