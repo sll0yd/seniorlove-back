@@ -1,3 +1,6 @@
+// sequelize-client.js
+
+// Import necessary dependencies
 import 'dotenv/config';
 import { Sequelize } from 'sequelize';
 
