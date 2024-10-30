@@ -2,7 +2,12 @@ import 'dotenv/config';
 import { Sequelize } from 'sequelize';
 
 // Create a new Sequelize instance
-export const sequelize = new Sequelize(process.env.PG_URL);
+export const sequelize = new Sequelize(process.env.PG_URL, {
+  define: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
+});
 
 // Test the connection (uncomment line 10 to 21 to test)
 // test commande : node src/models/sequelize-client.js
