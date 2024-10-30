@@ -19,7 +19,7 @@ CREATE TABLE "users" (
   "hometown" VARCHAR(255),
   "bio" TEXT,
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  "updated_at" TIMESTAMP
 );
 
 CREATE TABLE "event" (
@@ -31,7 +31,7 @@ CREATE TABLE "event" (
   "location" VARCHAR(255) NOT NULL,
   "creator_id" INT NOT NULL REFERENCES "users"("id"),
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  "updated_at" TIMESTAMP
 );
 
 CREATE TABLE "tag" (
@@ -39,7 +39,7 @@ CREATE TABLE "tag" (
   "name" VARCHAR(255) NOT NULL,
   "color" VARCHAR(7) NOT NULL,
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  "updated_at" TIMESTAMP
 );
 
 CREATE TABLE "message" (
@@ -48,7 +48,7 @@ CREATE TABLE "message" (
   "receiver_id" INT NOT NULL,
   "content" TEXT NOT NULL,
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  "updated_at" TIMESTAMP
 );
 
 -- COMMIT is to end the transaction --
