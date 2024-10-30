@@ -1,7 +1,7 @@
 // users.model.js
 
 // Import necessary dependencies
-import { Model, Database } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize-client.js';
 
 // Create a new Sequelize model
@@ -10,36 +10,36 @@ export class Users extends Model {}
 // Initialize the model with the appropriate configuration (regarding create_tables.sql)
 Users.init(
   {
-    username: {
-      type: Database.STRING,
+    userName: {
+      type: DataTypes.STRING(255),
       allowNull: false,
       unique: true
     },
     gender: {
-      type: Database.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     picture: {
-      type: Database.STRING
+      type: DataTypes.STRING
     },
     email: {
-      type: Database.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
       unique: true
     },
     password: {
-      type: Database.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false
     },
     age: {
-      type: Database.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     hometown: {
-      type: Database.STRING
+      type: DataTypes.STRING(255)
     },
     bio: {
-      type: Database.STRING
+      type: DataTypes.TEXT
     }
   },
   {
