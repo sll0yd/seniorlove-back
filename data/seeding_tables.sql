@@ -94,8 +94,8 @@ VALUES
 
 INSERT INTO "sentences" ("content", "color")
 VALUES
-  ('Commencez dès aujourd’hui à rencontrer des personnes prêtes à partager de beaux moments et à construire une relation sincère.', 'F2BBB7'),
-  ('Ne manquez pas cette occasion de rejoindre un événement convivial et de rencontrer des personnes prêtes à partager des moments authentiques !', 'F2BBB7'),
+  ('Commencez dès aujourd’hui à rencontrer des personnes prêtes à partager de beaux moments et à construire une relation sincère.', 'fb7185'),
+  ('Ne manquez pas cette occasion de rejoindre un événement convivial et de rencontrer des personnes prêtes à partager des moments authentiques !', 'fb7185'),
   ('Élargissez votre cercle et partez à la rencontre de nouvelles personnes prêtes à vivre des expériences enrichissantes !', '4EC5CA'),
   ('Créez dès aujourd’hui un événement convivial et faites la connaissance de personnes prêtes à partager des moments uniques et à tisser de nouveaux liens. ', '4EC5CA')
   ;
