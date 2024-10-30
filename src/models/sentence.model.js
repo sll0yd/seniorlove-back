@@ -1,17 +1,17 @@
-// tag.model.js
+// sentence.model.js
 
 // Import necessary dependencies
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize-client.js';
 
 // Create a new Sequelize model
-export class Tag extends Model {}
+export class Sentence extends Model {}
 
 // Initialize the model with the appropriate configuration (regarding create_tables.sql)
-Tag.init(
+Sentence.init(
   {
-    name: {
-      type: DataTypes.STRING,
+    content: {
+      type: DataTypes.TEXT,
       allowNull: false
     },
     color: {
@@ -21,6 +21,6 @@ Tag.init(
   },
   {
     sequelize,
-    tableName: 'tag'
+    tableName: 'sentences'
   }
 )
