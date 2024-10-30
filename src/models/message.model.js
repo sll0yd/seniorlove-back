@@ -5,7 +5,7 @@ import {Model, DataTypes} from 'sequelize';
 import {sequelize} from './sequelize-client.js';
 
 // Create a new Sequelize model
-class Message extends Model {}
+export class Message extends Model {}
 
 // Initialize the model with the appropriate configuration (regarding create_tables.sql)
 Message.init(
