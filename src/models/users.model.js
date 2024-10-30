@@ -22,6 +22,10 @@ Users.init(
     picture: {
       type: DataTypes.STRING
     },
+    role: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     email: {
       type: DataTypes.STRING(255),
       allowNull: false,
