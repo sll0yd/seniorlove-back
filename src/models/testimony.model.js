@@ -1,3 +1,6 @@
+// testimony.model.js
+
+// Import necessary dependencies
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './sequelize-client.js';
 
