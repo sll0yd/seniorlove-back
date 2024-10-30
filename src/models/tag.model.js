@@ -15,7 +15,7 @@ Tag.init(
       allowNull: false
     },
     color: {
-      type: DataTypes.STRING(7),
+      type: DataTypes.STRING(6),
       allowNull: false
     }
   },
