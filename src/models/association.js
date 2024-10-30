@@ -1,3 +1,6 @@
+// association.js
+
+// Import necessary dependencies
 import { sequelize } from "./sequelize-client.js";
 import { Users } from "./users.model.js";
 import { Event } from "./event.model.js";
