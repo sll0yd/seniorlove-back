@@ -26,5 +26,27 @@ const authController = {
     if (userExists) {
       return res.status(409).json({ message: "User already exists" });
     }
+
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const userData = {
+        gender,
+        userName,
+        age,
+        email,
+        password: hashedPassword,
+      };
+
+      const user = await Users.create(userData);
+      console.log(user);
+      return res.status(201).json({ message: "User created successfully" });
+
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
   }
 }
+
+export default authController;
