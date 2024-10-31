@@ -72,13 +72,16 @@ const authController = {
 
 	// Define the loginUser method
 	async loginUser(req, res) {
+    // Destructure the email and password from the request body
 		const { email, password } = req.body;
 
+    // If the email or password is missing, return a 400 status code with an error message
 		if (!email || !password) {
 			return res.status(400).json({ error: "Email and password are required" });
 		}
 
 		try {
+      // Find the user in the database by email
 			const user = await Users.findOne({
 				where: { email },
 				attributes: {
@@ -86,21 +89,27 @@ const authController = {
 				},
 			});
 
+      // If the user does not exist, return a 404 status code with an error message
       if (!user) {
         return res.status(404).json({ error: "Something went wrong, please try again" });
       }
 
+      // Compare the provided password with the hashed password in the database
       const isValidPassword = await bcrypt.compare(password, user.password);
 
+      // If the password is invalid, return a 401 status code with an error message
       if(!isValidPassword) {
         return res.status(401).json({ error: "Something went wrong, please try again" });
       }
 
+      // Generate an access token using the user's id and the JWT_SECRET from the .env file
       const accessToken = jwt.sign({ id: user.id}, process.env.JWT_SECRET, {expiresIn: '10800s'});
 
+      // Return the access token in the response
       return res.json({ accessToken });
 
 		} catch (error) {
+      // If an error occurs, return a 500 status code with the error message
       return res.status(500).json({ error: error.message });
     }
 	},
