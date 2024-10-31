@@ -9,3 +9,22 @@ const userSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
+
+const authController = {
+  async createUser(req, res) {
+
+    const result = userSchema.safeParse(req.body);
+
+    if(!result.success) {
+      return res.status(400).json({ error: result.error });
+    }
+
+    const { gender, userName, age, email, password } = result.data;
+
+    const userExists = await Users.findOne({ where: { email } });
+
+    if (userExists) {
+      return res.status(409).json({ message: "User already exists" });
+    }
+  }
+}
