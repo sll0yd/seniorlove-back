@@ -24,7 +24,6 @@ Users.init(
     },
     role: {
       type: DataTypes.STRING(255),
-      allowNull: false
     },
     email: {
       type: DataTypes.STRING(255),
