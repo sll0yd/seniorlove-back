@@ -5,7 +5,7 @@ import { Tag } from '../models/index.js'
 
 // Declare the tagController object
 const tagController = {
-  async getTags(req, res) {
+  async getAllTags(req, res) {
     // Find all tags in the database
     const tags = await Tag.findAll()
 
