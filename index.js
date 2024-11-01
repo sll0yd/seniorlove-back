@@ -3,6 +3,7 @@
 // Import dotenv and express dependencies
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import { router as apiRouter } from "./src/routes/index.js";
 
 // Create an express app assigned to 'app' variable
@@ -14,6 +15,10 @@ const app = express();
 //   }
 // );
 
+// Enable All CORS Requests
+app.use(cors());
+
+// Parse JSON request bodies
 app.use(express.json());
 app.use("/api", apiRouter);
 
