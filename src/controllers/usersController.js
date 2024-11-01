@@ -6,7 +6,7 @@ const usersController = {
 			include: {
 				model: Tag,
 				as: "tags",
-			}
+			},
 		});
 		res.json(users);
 	},
