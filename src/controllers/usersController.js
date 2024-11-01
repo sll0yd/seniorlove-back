@@ -6,9 +6,27 @@ const usersController = {
 			include: {
 				model: Tag,
 				as: "tags",
+        attributes: ["id", "name"],
+				through: {
+					attributes: [],
+				},
 			},
 		});
 		res.json(users);
+	},
+
+	async getOneUser(req, res) {
+		const user = await Users.findByPk(req.params.id, {
+			include: {
+				model: Tag,
+				as: "tags",
+        attributes: ["id", "name"],
+				through: {
+					attributes: [],
+				},
+			},
+		});
+		res.json(user);
 	},
 };
 
