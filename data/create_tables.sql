@@ -13,7 +13,7 @@ CREATE TABLE "users" (
   "userName" VARCHAR(255) NOT NULL,
   "gender" TEXT NOT NULL,
   "picture" VARCHAR,
-  "role" VARCHAR(255) NOT NULL DEFAULT 'member',
+  "role" VARCHAR(255) DEFAULT 'member',
   "email" VARCHAR(255) NOT NULL UNIQUE,
   "password" VARCHAR(255) NOT NULL,
   "age" INT NOT NULL,
