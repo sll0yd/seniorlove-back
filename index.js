@@ -3,7 +3,7 @@
 // Import dotenv and express dependencies
 import "dotenv/config";
 import express from "express";
-import router from "./src/routes/router.js";
+import { router as apiRouter } from "./src/routes/index.js";
 
 // Create an express app assigned to 'app' variable
 const app = express();
@@ -15,7 +15,7 @@ const app = express();
 // );
 
 app.use(express.json());
-app.use("/api", router);
+app.use("/api", apiRouter);
 
 // Define the port to listen on
 const port = process.env.PORT || 3000;
