@@ -6,7 +6,7 @@ const usersController = {
 			include: {
 				model: Tag,
 				as: "tags",
-        attributes: ["id", "name"],
+				attributes: ["id", "name"],
 				through: {
 					attributes: [],
 				},
@@ -16,27 +16,27 @@ const usersController = {
 	},
 
 	async getOneUser(req, res) {
-    const id = Number.parseInt(req.params.id);
+		const id = Number.parseInt(req.params.id);
 
-    if (Number.isNaN(id)) {
-      return res.status(400).json({ error: "Invalid user ID" });
-    }
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user ID" });
+		}
 
 		const user = await Users.findByPk(id, {
 			include: {
 				model: Tag,
 				as: "tags",
-        attributes: ["id", "name"],
+				attributes: ["id", "name"],
 				through: {
 					attributes: [],
 				},
 			},
 		});
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-    
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
 		res.json(user);
 	},
 };
