@@ -1,4 +1,4 @@
-import { Testimony } from "../models/testimony.model.js"
+import { Testimony } from "../models/index.js"
 
 const testimonyController = {
   getAllTestimonies: async (req, res) => {
