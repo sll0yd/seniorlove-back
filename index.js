@@ -16,7 +16,7 @@ const app = express();
 // );
 
 // Enable All CORS Requests
-app.use(cors());
+app.use(cors("*"));
 
 // Parse JSON request bodies
 app.use(express.json());
