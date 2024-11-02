@@ -1,0 +1,51 @@
+# # This file is a collection of requests that can be run using the REST Client extension in VSCode
+# # Mind that you need to have the extension installed in order to run these requests
+# # Think of uncommenting the request you want to run (one at a time)
+# # To run a request, click on the "Send Request" link that appears above the request
+
+# # ==== PROVIDING / REQUIERING AUTHENTICATION TESTS ==== #
+
+# # Register
+# POST http://localhost:3000/api/signup
+# Content-Type: application/json
+
+# {
+#     "gender": "M",
+#     "userName": "JohnDoe",
+#     "age": 60,
+#     "email": "john@doe.com",
+#     "password": "johndoe123"
+# }
+
+# # Login
+# POST http://localhost:3000/api/login
+# Content-Type: application/json
+
+# {
+#     "email": "john@doe.com",
+#     "password": "johndoe123"
+# }
+
+# # Get user profile with bearer token (copy the token from the login response)
+# GET http://localhost:3000/api/me
+# Authorization : Bearer paste_the_token_here
+
+# # ==== COMMON TESTS ==== #
+
+# # Get all users
+# GET http://localhost:3000/api/users
+
+# # Get one user (here we are getting the user with id 1)
+# GET http://localhost:3000/api/users/1
+
+# # Get all events
+# GET http://localhost:3000/api/events
+
+# # Get one event (here we are getting the event with id 1)
+# GET http://localhost:3000/api/events/1
+
+# # Get all testimonies
+# GET http://localhost:3000/api/testimonies
+
+# # Get all sentences
+# GET http://localhost:3000/api/sentences
