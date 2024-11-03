@@ -40,34 +40,30 @@ const authController = {
 		}
 
 		// If the user does not exist, hash the password and create a new user
-		try {
-			// Hash the password using bcrypt
-			// The bcrypt library is used to hash passwords
-			// The saltRounds parameter is the number of rounds used to generate the hash (here 10)
-			const hashedPassword = await bcrypt.hash(password, 10);
 
-			// Create a new user object with the validated data
-			const userData = {
-				gender,
-				userName,
-				age,
-				email,
-				// Give the password property the hashed password
-				password: hashedPassword,
-			};
+		// Hash the password using bcrypt
+		// The bcrypt library is used to hash passwords
+		// The saltRounds parameter is the number of rounds used to generate the hash (here 10)
+		const hashedPassword = await bcrypt.hash(password, 10);
 
-			// Create a new user in the database
-			// The Users model is used to create a new user
-			// The create method creates a new user with the provided data (here userData)
-			const user = await Users.create(userData);
-			console.log(user);
+		// Create a new user object with the validated data
+		const userData = {
+			gender,
+			userName,
+			age,
+			email,
+			// Give the password property the hashed password
+			password: hashedPassword,
+		};
 
-			// Return a 201 status code with a success message
-			return res.status(201).json({ message: "User created successfully" });
-		} catch (error) {
-			// If an error occurs, return a 500 status code with the error message
-			return res.status(500).json({ error: error.message });
-		}
+		// Create a new user in the database
+		// The Users model is used to create a new user
+		// The create method creates a new user with the provided data (here userData)
+		const user = await Users.create(userData);
+		console.log(user);
+
+		// Return a 201 status code with a success message
+		return res.status(201).json({ message: "User created successfully" });
 	},
 
 	// Define the loginUser method

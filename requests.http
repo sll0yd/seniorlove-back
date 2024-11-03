@@ -3,9 +3,9 @@
 # # Think of uncommenting the request you want to run (one at a time)
 # # To run a request, click on the "Send Request" link that appears above the request
 
-# # ==== PROVIDING / REQUIERING AUTHENTICATION TESTS ==== #
+# # ==== PROVIDING AUTHENTICATION TESTS ==== #
 
-# # Register
+# # # Register
 # POST http://localhost:3000/api/signup
 # Content-Type: application/json
 
@@ -26,9 +26,31 @@
 #     "password": "johndoe123"
 # }
 
-# # Get user profile with bearer token (copy the token from the login response)
+# # ==== REQUIERING AUTHENTICATION TESTS ==== #
+
+# # # Get user profile with bearer token (copy the token from the login response)
 # GET http://localhost:3000/api/me
-# Authorization : Bearer paste_the_token_here
+# Authorization : Bearer paste_your_token_here
+
+# # ============================================================================ # #
+## THIS PATCH TEST DOES NOT WORK IN REST CLIENT EXTENSION BUT WORKS IN POSTMAN ##
+# # Update user profile with bearer token (copy the token from the login response)
+# PATCH http://localhost:3000/api/me HTTP/1.1
+# Content-Type: application/json
+
+# Authorization : Bearer paste_your_token_here
+
+# {
+#     "hometown": "TestCity",
+#     "userName": "TestName",
+#     "bio": "Does this test work ?",
+#     "age": 30
+# }
+# # ============================================================================ # #
+
+# # Delete user profile with bearer token (copy the token from the login response)
+# DELETE http://localhost:3000/api/me
+# Authorization : Bearer paste_your_token_here
 
 # # ==== COMMON TESTS ==== #
 

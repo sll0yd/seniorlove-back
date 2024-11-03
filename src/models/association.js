@@ -51,6 +51,7 @@ Event.belongsToMany(Users, {
 
 // Define associations between models Events and Users (as creators)
 Event.belongsTo(Users, {
+	as: "creator",
 	foreignKey: "creator_id",
 });
 Users.hasMany(Event, {
