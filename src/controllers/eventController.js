@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { Event, Tag, Users } from "../models/index.js";
 
 const eventController = {
@@ -34,7 +35,7 @@ const eventController = {
 		}
 
 		const event = await Event.findByPk(id, {
-			// We want to retrieve the tags associated with the event
+			// We want to retrieve the tags associated with the event, as well as the participants and the creator
 			include: [
 				{
 					// Specify the model to use
@@ -50,6 +51,7 @@ const eventController = {
 						attributes: [],
 					},
 				},
+				// Include the participants of the event
 				{
 					model: Users,
 					as: "participants",
@@ -58,6 +60,12 @@ const eventController = {
 						attributes: [],
 					},
 				},
+				// Include the creator of the event
+				{
+					model: Users,
+					as: "creator",
+					attributes: ["id", "userName", "picture"],
+				}
 			],
 		});
 
@@ -67,6 +75,42 @@ const eventController = {
 		}
 
 		console.log(event.participants.length);
+		res.json(event);
+	},
+	async createAnEvent(req, res) {
+		// Define the schema for the request body
+		const eventSchema = z.object({
+			title: z.string().min(1).optional(false),
+			picture: z.string().optional(),
+			description: z.string().min(1).optional(false),
+			date: z.string().optional(false),
+			location: z.string().min(1).optional(false),
+		});
+
+		// Validate the request body against the schema
+		const { error } = eventSchema.parse(req.body);
+
+		// If the validation fails, return a 400 status code with the error message
+		if (error) {
+			return res.status(400).json({ error: error.message });
+		}
+
+		// Destructure the validated request body into individual variables
+		const { title, picture, description, date, location } = req.body;
+		// Get the creator ID from the authenticated user
+		const creator_id = req.user.id;
+
+		// Create a new event with the validated data
+		const event = await Event.create({
+			title,
+			picture,
+			description,
+			date,
+			location,
+			creator_id,
+		});
+
+		// Return the created event
 		res.json(event);
 	},
 };
