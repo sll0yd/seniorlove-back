@@ -20,6 +20,12 @@ const eventController = {
 						attributes: [],
 					},
 				},
+				// Include the event creator
+				{
+					model: Users,
+					as: "creator",
+					attributes: ["id", "userName", "picture"],
+				},
 			],
 		});
 		res.json(events);
