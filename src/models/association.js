@@ -72,5 +72,10 @@ Message.belongsTo(Users, {
 	foreignKey: "receiver_id",
 });
 
+Testimony.belongsTo(Users, {
+	as: "user",
+	foreignKey: "user_id",
+});
+
 // Export all models and associations to be used in src/models/index.js
 export { sequelize, Users, Event, Tag, Message, Testimony, Sentence };
