@@ -52,6 +52,7 @@ const meController = {
 
 		res.json(user);
 	},
+
 	async deleteSelfProfile(req, res) {
 		const id = Number.parseInt(req.user.id, 10);
 
@@ -65,7 +66,7 @@ const meController = {
 	},
 	async asignTagToSelfProfile(req, res) {
 		const id = Number.parseInt(req.user.id, 10);
-		const tagId = Number.parseInt(req.body.tagId, 10);
+		const tagId = Number.parseInt(req.params.tagId);
 
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
