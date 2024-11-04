@@ -108,7 +108,6 @@ const meController = {
 
 		res.json({ message: "Tag added" });
 	},	
-
 	async removeTagFromSelfProfile(req, res) {
 		const id = Number.parseInt(req.user.id, 10);
 		const tagId = Number.parseInt(req.params.tagId);
