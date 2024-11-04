@@ -53,6 +53,14 @@
 # DELETE http://localhost:3000/api/me
 # Authorization : Bearer paste_your_token_here
 
+# # # Add a tag to user profile with bearer token (copy the token from the login response)
+# POST http://localhost:3000/api/me/tags/3
+# Authorization : Bearer paste_your_token_here
+
+# # # Remove a tag from user profile with bearer token (copy the token from the login response)
+# DELETE http://localhost:3000/api/me/tags/3
+# Authorization : Bearer paste_your_token_here
+
 # # # Create an event with bearer token (copy the token from the login response)
 # POST http://localhost:3000/api/me/events
 # Content-Type: application/json
@@ -66,16 +74,12 @@
 #     "participants": 10
 # }
 
-# # # Add a tag to user profile with bearer token (copy the token from the login response)
-# POST http://localhost:3000/api/me/tags/3
-# Authorization : Bearer paste_your_token_here
-
-# # # Remove a tag from user profile with bearer token (copy the token from the login response)
-# DELETE http://localhost:3000/api/me/tags/3
-# Authorization : Bearer paste_your_token_here
-
 # # # Get all created events with bearer token (copy the token from the login response)
 # GET http://localhost:3000/api/me/events
+# Authorization : Bearer paste_your_token_here
+
+# # # Get one created event with bearer token (copy the token from the login response)
+# GET http://localhost:3000/api/me/events/6
 # Authorization : Bearer paste_your_token_here
 
 # # ==== COMMON TESTS ==== #
