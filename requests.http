@@ -74,6 +74,10 @@
 # DELETE http://localhost:3000/api/me/tags/3
 # Authorization : Bearer paste_your_token_here
 
+# # # Get all created events with bearer token (copy the token from the login response)
+GET http://localhost:3000/api/me/events
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTczMDcxMTg3NiwiZXhwIjoxNzMwNzIyNjc2fQ.OmnIQ-PbnIXZaTjlnXPunemzt3TCUqz1hTnC4YDgxjE
+
 # # ==== COMMON TESTS ==== #
 
 # # Get all users
