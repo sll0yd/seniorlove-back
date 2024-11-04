@@ -411,6 +411,67 @@ const meController = {
 
 		res.json(eventToBeFind);
 	},
+	async removeTagFromOwnedEvent(req, res) {
+		const id = Number.parseInt(req.user.id);
+		const eventId = Number.parseInt(req.params.eventId);
+		const tagId = Number.parseInt(req.params.tagId);
+
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}
+
+		if (Number.isNaN(eventId)) {
+			return res.status(400).json({ error: "Invalid event id" });
+		}	
+
+		if (Number.isNaN(tagId)) {
+			return res.status(400).json({ error: "Invalid tag id" });
+		}
+
+		const eventToBeFind = await Event.findByPk(eventId, {
+			include: [{
+				model: Users,
+				as: "creator",
+				attributes: ["id", "userName", "picture"],
+			},
+			{
+				model: Tag,
+				as: "tags",
+				attributes: ["id", "name", "color"],
+				through: {
+					attributes: [],
+				},
+			}],
+		});
+
+		if (!eventToBeFind) {
+			return res.status(404).json({ error: "Event not found" });
+		}
+
+		const user = await Users.findByPk(id);
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		if (user.id !== eventToBeFind.creator.id) {
+			return res.status(403).json({ error: "User is not the creator of the event" });
+		}
+
+		const tag = await Tag.findByPk(tagId);
+
+		if (!tag) {
+			return res.status(404).json({ error: "Tag not found" });
+		}
+
+		if (!eventToBeFind.tags.some((t) => t.id === tag.id)) {
+			return res.status(400).json({ error: "Tag not assigned" });
+		}
+
+		eventToBeFind.removeTag(tag);
+
+		res.json(eventToBeFind);
+	},
 };
 
 export default meController;
