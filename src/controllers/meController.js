@@ -308,7 +308,45 @@ const meController = {
 		await eventToBeFind.save();
 
 		res.json(eventToBeFind);
-	}
+	},
+	async deleteOwnedEvent(req, res) {
+		const id = Number.parseInt(req.user.id);
+		const eventId = Number.parseInt(req.params.eventId);
+
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}	
+
+		if (Number.isNaN(eventId)) {
+			return res.status(400).json({ error: "Invalid event id" });
+		}
+
+		const eventToBeFind = await Event.findByPk(eventId, {
+			include: {
+				model: Users,
+				as: "creator",
+				attributes: ["id", "userName", "picture"],
+			},
+		});
+
+		if (!eventToBeFind) {
+			return res.status(404).json({ error: "Event not found" });
+		}
+
+		const user = await Users.findByPk(id);
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		if (user.id !== eventToBeFind.creator.id) {
+			return res.status(403).json({ error: "User is not the creator of the event" });
+		}
+
+		await eventToBeFind.destroy();
+
+		res.json(eventToBeFind);
+	},
 };
 
 export default meController;
