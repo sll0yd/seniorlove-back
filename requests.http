@@ -131,4 +131,4 @@
 # GET http://localhost:3000/api/sentences
 
 # # # Get one sentence
-GET http://localhost:3000/api/sentences/4
+# GET http://localhost:3000/api/sentences/4
