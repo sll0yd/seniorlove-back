@@ -82,6 +82,23 @@
 # GET http://localhost:3000/api/me/events/6
 # Authorization : Bearer paste_your_token_here
 
+# # ============================================================================ # #
+# # THIS PATCH TEST DOES NOT WORK IN REST CLIENT EXTENSION BUT WORKS IN POSTMAN ##
+# # # # Update one created event with bearer token (copy the token from the login response)
+# PATCH http://localhost:3000/api/me/events/6
+
+# Content-Type: application/json
+
+# Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTczMDcxNjY5OCwiZXhwIjoxNzMwNzI3NDk4fQ.T1C12uQSiGBwF1qzLHRp0j3X9EeOUqdM8nW-TLkk2ZM
+
+# {
+#     "title": "Test Event Updated",
+#     "description": "This is a test event updated",
+#     "date": "2021-12-31",
+#     "location": "TestCity",
+# }
+# # ============================================================================ # #
+
 # # ==== COMMON TESTS ==== #
 
 # # Get all users
