@@ -55,6 +55,7 @@ Event.belongsTo(Users, {
 	foreignKey: "creator_id",
 });
 Users.hasMany(Event, {
+	as: "createdEvents",
 	foreignKey: "creator_id",
 });
 
