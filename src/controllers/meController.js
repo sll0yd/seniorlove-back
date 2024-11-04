@@ -1,4 +1,4 @@
-import { Users, Tag} from "../models/index.js";
+import { Users, Tag, Event} from "../models/index.js";
 
 const meController = {
 
@@ -152,6 +152,43 @@ const meController = {
 		await user.removeTag(tag);
 
 		res.json({ message: "Tag removed" });
+	},
+	async getSelfCreatedEvents(req, res) {
+		// Get the user id from the req.user object
+		// Convert the user id to a number
+		const id = Number.parseInt(req.user.id, 10);
+
+		// Check if the user id is a number
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}
+		
+		// Find the user in the database by id
+		// Include the created events in the response
+		const user = await Users.findByPk(id, {
+			include: {
+				model: Event,
+				// Specify the alias of the association
+				// In this case, we want to retrieve the created events
+				// The name of the association is "createdEvents"
+				as: "createdEvents",
+				attributes: ["id", "title", "description", "date", "location", "picture"],
+			},
+		});
+		
+		// Check if the user exists
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		// Check if the user has created events
+		// If the user has no created events, return a 404 status code with an error message
+		if (user.createdEvents.length === 0) {
+			return res.status(404).json({ error: "User has no created events" });
+		}
+
+		// Return the created events
+		res.json(user.createdEvents);
 	},
 };
 
