@@ -79,8 +79,8 @@
 # Authorization : Bearer paste_your_token_here
 
 # # # Get one created event with bearer token (copy the token from the login response)
-# GET http://localhost:3000/api/me/events/6
-# Authorization : Bearer paste_your_token_here
+GET http://localhost:3000/api/me/events/7
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTczMDcyMzE2NywiZXhwIjoxNzMwNzMzOTY3fQ.FuZ7jgU9iThoO0Sct46Z7yQddXiqEDoY-m9ZqXwFfus
 
 # # ============================================================================ # #
 # # THIS PATCH TEST DOES NOT WORK IN REST CLIENT EXTENSION BUT WORKS IN POSTMAN ##
@@ -102,6 +102,10 @@
 # # # Delete one created event with bearer token (copy the token from the login response)
 # DELETE http://localhost:3000/api/me/events/6
 # Authorization : Bearer paste_your_token_here
+
+# # # Add a tag to one created event with bearer token (copy the token from the login response)
+# POST http://localhost:3000/api/me/events/7/tags/6
+# Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTczMDcyMzE2NywiZXhwIjoxNzMwNzMzOTY3fQ.FuZ7jgU9iThoO0Sct46Z7yQddXiqEDoY-m9ZqXwFfus
 
 # # ==== COMMON TESTS ==== #
 
