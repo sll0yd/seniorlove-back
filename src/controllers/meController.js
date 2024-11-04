@@ -240,11 +240,18 @@ const meController = {
 		}
 
 		const eventToBeFind = await Event.findByPk(eventId, {
-			include: {
+			include: [{
 				model: Users,
 				as: "creator",
 				attributes: ["id", "userName", "picture"],
-			},
+			}, {
+				model: Tag,
+				as: "tags",
+				attributes: ["id", "name"],
+				through: {
+					attributes: [],
+				},
+			}],
 		});
 
 		if (!eventToBeFind) {
