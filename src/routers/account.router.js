@@ -10,5 +10,6 @@ router.patch("/me", isLoggedIn, cw(meController.updateSelfProfile));
 router.delete("/me", isLoggedIn, cw(meController.deleteSelfProfile));
 
 router.post("/me/tags/:tagId", isLoggedIn, cw(meController.assignTagToSelfProfile));
+router.delete("/me/tags/:tagId", isLoggedIn, cw(meController.removeTagFromSelfProfile));
 
 export default router;
