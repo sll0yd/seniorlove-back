@@ -18,5 +18,6 @@ router.get("/me/events/:eventId", isLoggedIn, cw(meController.getOneOwnedEvent))
 router.patch("/me/events/:eventId", isLoggedIn, cw(meController.updateOwnedEvent));
 router.delete("/me/events/:eventId", isLoggedIn, cw(meController.deleteOwnedEvent));
 router.post("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.addTagToOwnedEvent));
+router.delete("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.removeTagFromOwnedEvent));
 
 export default router;
