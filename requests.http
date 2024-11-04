@@ -54,7 +54,7 @@
 # Authorization : Bearer paste_your_token_here
 
 # # # Create an event with bearer token (copy the token from the login response)
-# POST http://localhost:3000/api/events
+# POST http://localhost:3000/api/me/events
 # Content-Type: application/json
 # Authorization : Bearer paste_your_token_here
 
@@ -75,8 +75,8 @@
 # Authorization : Bearer paste_your_token_here
 
 # # # Get all created events with bearer token (copy the token from the login response)
-GET http://localhost:3000/api/me/events
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTczMDcxMTg3NiwiZXhwIjoxNzMwNzIyNjc2fQ.OmnIQ-PbnIXZaTjlnXPunemzt3TCUqz1hTnC4YDgxjE
+# GET http://localhost:3000/api/me/events
+# Authorization : Bearer paste_your_token_here
 
 # # ==== COMMON TESTS ==== #
 
