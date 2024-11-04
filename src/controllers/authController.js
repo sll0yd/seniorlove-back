@@ -107,7 +107,7 @@ const authController = {
 		});
 
 		// Return the access token in the response
-		return res.json({ accessToken });
+		return res.json({ accessToken, user : { id: user.id, gender: user.gender, userName: user.userName, age: user.age, email: user.email} });
 	},
 };
 
