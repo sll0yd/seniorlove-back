@@ -14,5 +14,6 @@ router.delete("/me/tags/:tagId", isLoggedIn, cw(meController.removeTagFromSelfPr
 
 router.post("/me/events", isLoggedIn, cw(meController.createAnEvent));
 router.get("/me/events", isLoggedIn, cw(meController.getSelfCreatedEvents));
+router.get("/me/events/:eventId", isLoggedIn, cw(meController.getOneOwnedEvent));
 
 export default router;
