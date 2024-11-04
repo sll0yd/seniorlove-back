@@ -22,8 +22,8 @@
 # Content-Type: application/json
 
 # {
-#     "email": "john@doe.com",
-#     "password": "johndoe123"
+#     "email": "jean@doe.com",
+#     "password": "jeandoe123"
 # }
 
 # # ==== REQUIERING AUTHENTICATION TESTS ==== #
@@ -71,7 +71,6 @@
 #     "description": "This is a test event",
 #     "date": "2021-12-31",
 #     "location": "TestCity",
-#     "participants": 10
 # }
 
 # # # Get all created events with bearer token (copy the token from the login response)
@@ -130,3 +129,6 @@
 
 # # Get all sentences
 # GET http://localhost:3000/api/sentences
+
+# # # Get one sentence
+GET http://localhost:3000/api/sentences/4
