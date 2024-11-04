@@ -67,7 +67,11 @@
 # }
 
 # # # Add a tag to user profile with bearer token (copy the token from the login response)
-# POST http://localhost:3000/api/me/tags/1
+# POST http://localhost:3000/api/me/tags/3
+# Authorization : Bearer paste_your_token_here
+
+# # # Remove a tag from user profile with bearer token (copy the token from the login response)
+# DELETE http://localhost:3000/api/me/tags/3
 # Authorization : Bearer paste_your_token_here
 
 # # ==== COMMON TESTS ==== #
