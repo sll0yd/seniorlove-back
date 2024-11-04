@@ -99,6 +99,10 @@
 # }
 # # ============================================================================ # #
 
+# # # Delete one created event with bearer token (copy the token from the login response)
+# DELETE http://localhost:3000/api/me/events/6
+# Authorization : Bearer paste_your_token_here
+
 # # ==== COMMON TESTS ==== #
 
 # # Get all users
