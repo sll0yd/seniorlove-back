@@ -52,7 +52,6 @@ const meController = {
 
 		res.json(user);
 	},
-
 	async deleteSelfProfile(req, res) {
 		const id = Number.parseInt(req.user.id, 10);
 
@@ -109,6 +108,52 @@ const meController = {
 
 		res.json({ message: "Tag added" });
 	},	
+
+	async removeTagFromSelfProfile(req, res) {
+		const id = Number.parseInt(req.user.id, 10);
+		const tagId = Number.parseInt(req.params.tagId);
+
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}
+
+		if (Number.isNaN(tagId)) {
+			return res.status(400).json({ error: "Invalid tag id" });
+		}
+
+		const tag = await Tag.findByPk(tagId);
+
+		if (!tag) {
+			return res.status(404).json({ error: "Tag not found" });
+		}
+
+		const user = await Users.findByPk(id, {
+			include: {
+				model: Tag,
+				as: "tags",
+				attributes: ["id", "name"],
+				through: {
+					attributes: [],
+				},
+			},
+		});
+		
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		// Check if the tag is assigned to the user
+		// If the tag is not assigned, return a 400 status code with an error message
+		// The some method checks if at least one element in the array satisfies the condition
+		if (!user.tags.some((t) => t.id === tag.id)) {
+			return res.status(400).json({ error: "Tag not assigned" });
+		}
+
+		// Remove the tag from the user using the removeTag method
+		await user.removeTag(tag);
+
+		res.json({ message: "Tag removed" });
+	},
 };
 
 export default meController;
