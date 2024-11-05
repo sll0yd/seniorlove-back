@@ -22,10 +22,10 @@ VALUES
 
 INSERT INTO "event" ("title", "picture", "description", "date", "location", "creator_id")
 VALUES 
-  ('Danse chez michel', ' ', 'Venez dansez la samba avec michel', '29/10/2024', 'Marseille', 2),
-  ('Atelier cuisine', ' ', 'Un moment de partage', '29/10/2024', 'Normandie', 1 ),
-  ('Atelier dessin', ' ', 'Venez titiller le crayon et le feutre dans un moment convivial', '29/10/2024', 'Paname', 8),
-  ('Soirée piscine', ' ', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11)
+  ('Ballade en forêt', 'https://cdn.pixabay.com/photo/2022/01/23/23/43/couple-6962202_1280.jpg', 'Nous vous proposons une ballade en forêt en compagnie de nos amis !', '29/10/2024', 'Marseille', 2),
+  ('Week-end musical', 'https://cdn.pixabay.com/photo/2017/11/02/20/31/guitars-2912447_1280.jpg', 'Partageons ensemble pour un week-end musical !', '29/10/2024', 'Normandie', 1 ),
+  ('Atelier dessin', 'https://cdn.pixabay.com/photo/2016/05/08/21/36/painting-1380016_1280.jpg', 'Venez titiller le crayon et le feutre dans un moment convivial.', '29/10/2024', 'Paname', 8),
+  ('Soirée piscine chez Marc', 'https://cdn.pixabay.com/photo/2015/07/10/15/01/water-839313_1280.jpg', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11)
   ;
 
 INSERT INTO "tag" ("name", "color")
