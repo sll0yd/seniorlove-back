@@ -54,74 +54,74 @@ const meController = {
 
 		res.json(user);
 	},
-async uploadProfilePicture(req, res) {
-	// Get the user id from the req.user object (the authenticated user)
-	const id = Number.parseInt(req.user.id, 10);
+	async uploadProfilePicture(req, res) {
+		// Get the user id from the req.user object (the authenticated user)
+		const id = Number.parseInt(req.user.id, 10);
 
-	// Check if the user id is a number
-	if (Number.isNaN(id)) {
-		return res.status(400).json({ error: "Invalid user id" });
-	}
-
-	// Find the user in the database by id
-	const user = await Users.findByPk(id);
-
-	// Check if the user exists
-	if (!user) {
-		return res.status(404).json({ error: "User not found" });
-	}
-
-	// Configure the multer middleware
-	// The diskStorage method is used to configure the storage engine
-	// The storage engine is used to determine where to store the uploaded files
-	const storage = multer.diskStorage({
-		// Define the destination and filename for the uploaded file
-
-		// The destination is a function that determines where to store the uploaded file
-		destination: (req, file, cb) => {
-			// The destination is the uploads folder
-			cb(null, "uploads/");
-		},
-		// The filename is the name of the file
-		filename: (req, file, cb) => {
-			// Generate a unique filename using the current date and a random number between 0 and 1E9
-			// The random number is used to ensure that the filename is unique
-			const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`
-			// Call the callback with the filename as the second argument (null is the first argument)
-			// file.fieldname is the name of the field in the front-end form (here "picture")
-			cb(null, `${file.fieldname}-${uniqueSuffix}`)
-		},
-	});
-
-	// Create an instance of the multer middleware with the storage configuration and the field name "picture" (must match the name attribute in the form)
-	// The single method is used to upload a single file
-	const upload = multer({ storage }).single("picture");
-
-	// Call the multer middleware with the request, response, and an error handler
-	// The error handler is called if there is an error during the upload
-	upload(req, res, (err) => {
-		// If there is an error, return a 500 status code with an error message
-		if (err) {
-			return res.status(500).json({ error: err.message });
+		// Check if the user id is a number
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
 		}
 
-		// If there is no file, return a 400 status code with an error message
-		if (!req.file) {
-			return res.status(400).json({ error: "No file uploaded" });
+		// Find the user in the database by id
+		const user = await Users.findByPk(id);
+
+		// Check if the user exists
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
 		}
 
-		// If the file is uploaded successfully, update the user's picture
-		// The picture property is updated with the path to the uploaded file
-		// The BASE_URL environment variable is used to determine the base URL of the application
-		user.picture = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+		// Configure the multer middleware
+		// The diskStorage method is used to configure the storage engine
+		// The storage engine is used to determine where to store the uploaded files
+		const storage = multer.diskStorage({
+			// Define the destination and filename for the uploaded file
 
-		// Save the user
-		user.save();
+			// The destination is a function that determines where to store the uploaded file
+			destination: (req, file, cb) => {
+				// The destination is the uploads folder
+				cb(null, "uploads/");
+			},
+			// The filename is the name of the file
+			filename: (req, file, cb) => {
+				// Generate a unique filename using the current date and a random number between 0 and 1E9
+				// The random number is used to ensure that the filename is unique
+				const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`
+				// Call the callback with the filename as the second argument (null is the first argument)
+				// file.fieldname is the name of the field in the front-end form (here "picture")
+				cb(null, `${file.fieldname}-${uniqueSuffix}`)
+			},
+		});
 
-		// Return the updated user
-		res.json(user);
-	});
-},
+		// Create an instance of the multer middleware with the storage configuration and the field name "picture" (must match the name attribute in the form)
+		// The single method is used to upload a single file
+		const upload = multer({ storage }).single("picture");
+
+		// Call the multer middleware with the request, response, and an error handler
+		// The error handler is called if there is an error during the upload
+		upload(req, res, (err) => {
+			// If there is an error, return a 500 status code with an error message
+			if (err) {
+				return res.status(500).json({ error: err.message });
+			}
+
+			// If there is no file, return a 400 status code with an error message
+			if (!req.file) {
+				return res.status(400).json({ error: "No file uploaded" });
+			}
+
+			// If the file is uploaded successfully, update the user's picture
+			// The picture property is updated with the path to the uploaded file
+			// The BASE_URL environment variable is used to determine the base URL of the application
+			user.picture = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+
+			// Save the user
+			user.save();
+
+			// Return the updated user
+			res.json(user);
+		});
+	},
 	async deleteSelfProfile(req, res) {
 		const id = Number.parseInt(req.user.id, 10);
 
