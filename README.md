@@ -79,11 +79,12 @@ PROJECT ROOT
 │   └── seeding_tables.sql
 ├── src
 │   └── controllers
+│      └── utils
+│         └── storageService.js
 │      ├── authController.js
 │      ├── eventController.js
 │      ├── meController.js
 │      ├── messageController.js
-│      ├── sentenceController.js
 │      ├── tagController.js
 │      ├── testimonyController.js
 │      └── usersController.js
@@ -93,7 +94,6 @@ PROJECT ROOT
 │      └── tests
 │          ├── event.model.test.js
 │          ├── message.model.test.js
-│          ├── sentence.model.test.js
 │          ├── tag.model.test.js
 │          ├── testimony.model.test.js
 │          └── users.model.test.js
@@ -101,7 +101,6 @@ PROJECT ROOT
 │      ├── event.model.js
 │      ├── index.js
 │      ├── message.model.js
-│      ├── sentence.model.js
 │      ├── sequelize-client.js
 │      ├── tag.model.js
 │      ├── testimony.model.js
@@ -112,11 +111,9 @@ PROJECT ROOT
 │      ├── controller-wrapper.js
 │      ├── event.router.js
 │      ├── index.js
-│      ├── sentence.router.js
 │      ├── tag.router.js
 │      ├── testimony.router.js
 │      └── users.router.js
-│   └── services
 ├── .env.example
 ├── .gitignore
 ├── index.js
