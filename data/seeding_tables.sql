@@ -92,12 +92,5 @@ VALUES
   ('Lorem bernard ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.', 4)
   ;
 
-INSERT INTO "sentences" ("content", "color")
-VALUES
-  ('Commencez dès aujourd’hui à rencontrer des personnes prêtes à partager de beaux moments et à construire une relation sincère.', 'fb7185'),
-  ('Ne manquez pas cette occasion de rejoindre un événement convivial et de rencontrer des personnes prêtes à partager des moments authentiques !', 'fb7185'),
-  ('Élargissez votre cercle et partez à la rencontre de nouvelles personnes prêtes à vivre des expériences enrichissantes !', '4EC5CA'),
-  ('Créez dès aujourd’hui un événement convivial et faites la connaissance de personnes prêtes à partager des moments uniques et à tisser de nouveaux liens. ', '4EC5CA')
-  ;
 -- COMMIT is to end the transaction --
 COMMIT;
