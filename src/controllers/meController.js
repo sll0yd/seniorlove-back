@@ -51,7 +51,7 @@ const meController = {
 		user.picture = req.body.picture || user.picture;
 		user.hometown = req.body.hometown || user.hometown;
 		user.bio = req.body.bio || user.bio;
-		user.password = bcrypt.hashSync(req.body.password, 10) || user.password;
+		// user.password = bcrypt.hashSync(req.body.password, 10) || user.password;
 
 		user.save();
 
