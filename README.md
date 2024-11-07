@@ -143,7 +143,9 @@ PROJECT ROOT
 | GET | /api/me | Return self user's profile |
 | PATCH | /api/me | Update self user's profile |
 | DELETE | /api/me | Delete self user's profile |
+| POST | /api/me/profile_picture | Add a profile picture |
 | POST | /api/me/tags/:tagId | Assign a tag to self user's profile |
+| POST | /api/me/events/:eventId/event_picture | Add a picture to created event |
 | DELETE | /api/me/tags/:tagId | Remove a tag from self user's profile |
 | POST | /api/me/events | Register a new event |
 | GET | /api/me/events | Return an array of owned events |
