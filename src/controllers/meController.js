@@ -339,6 +339,58 @@ const meController = {
 
 		res.json(eventToBeFind);
 	},
+	async uploadEventPicture(req, res) {
+		const id = Number.parseInt(req.user.id);
+		const eventId = Number.parseInt(req.params.eventId);
+
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}
+
+		if (Number.isNaN(eventId)) {
+			return res.status(400).json({ error: "Invalid event id" });
+		}
+
+		const eventToBeFind = await Event.findByPk(eventId, {
+			include: {
+				model: Users,
+				as: "creator",
+				attributes: ["id", "userName", "picture"],
+			},
+		});
+
+		if (!eventToBeFind) {
+			return res.status(404).json({ error: "Event not found" });
+		}
+
+		const user = await Users.findByPk(id);
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		if (user.id !== eventToBeFind.creator.id) {
+			return res.status(403).json({ error: "User is not the creator of the event" });
+		}
+
+		const storage = multer.diskStorage({
+			destination: (req, file, cb) => {
+				cb(null, "uploads/");
+			},
+			filename: (req, file, cb) => {
+				cb(null, file.originalname);
+			},
+		});
+
+		const upload = multer({ storage: storage }).single("picture");
+
+		upload(req, res, (err) => {
+			if (err) {
+				return res.status(500).json({ error: err.message });
+			}
+			res.json({ message: "File uploaded successfully" });
+		});
+	},
 	async updateOwnedEvent(req, res) {
 		const id = Number.parseInt(req.user.id);
 		const eventId = Number.parseInt(req.params.eventId);
