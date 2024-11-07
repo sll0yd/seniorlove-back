@@ -9,12 +9,15 @@ router.get("/me", isLoggedIn, cw(meController.getSelfProfile));
 router.patch("/me", isLoggedIn, cw(meController.updateSelfProfile));
 router.delete("/me", isLoggedIn, cw(meController.deleteSelfProfile));
 
+router.post("/me/profile_picture", isLoggedIn, cw(meController.uploadProfilePicture));
+
 router.post("/me/tags/:tagId", isLoggedIn, cw(meController.assignTagToSelfProfile));
 router.delete("/me/tags/:tagId", isLoggedIn, cw(meController.removeTagFromSelfProfile));
 
 router.post("/me/events", isLoggedIn, cw(meController.createAnEvent));
 router.get("/me/events", isLoggedIn, cw(meController.getSelfCreatedEvents));
 router.get("/me/events/:eventId", isLoggedIn, cw(meController.getOneOwnedEvent));
+router.post("/me/events/:eventId/event_picture", isLoggedIn, cw(meController.uploadEventPicture));
 router.patch("/me/events/:eventId", isLoggedIn, cw(meController.updateOwnedEvent));
 router.delete("/me/events/:eventId", isLoggedIn, cw(meController.deleteOwnedEvent));
 router.post("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.addTagToOwnedEvent));

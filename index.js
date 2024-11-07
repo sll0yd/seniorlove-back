@@ -20,6 +20,11 @@ app.use(cors("*"));
 
 // Parse JSON request bodies
 app.use(express.json());
+
+// Serve static files from the uploads directory (for profile pictures)
+app.use("/uploads", express.static("./uploads"));
+
+// Mount the API router at the /api endpoint
 app.use("/api", apiRouter);
 
 // Define the port to listen on
@@ -27,5 +32,5 @@ const port = process.env.PORT || 3000;
 
 // Start the server on port 3000
 app.listen(port, () => {
-	console.log(`Server is running on port ${port}`);
+	console.log(`Server is running on port ${process.env.BASE_URL}`);
 });
