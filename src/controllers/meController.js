@@ -12,6 +12,7 @@ const meController = {
 		}
 		
 		const user = await Users.findByPk(id, {
+			attributes: {include: ["password"]},
 			include: {
 				model: Tag,
 				as: "tags",
