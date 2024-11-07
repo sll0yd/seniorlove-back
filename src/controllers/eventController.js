@@ -78,7 +78,6 @@ const eventController = {
 			return res.status(404).json({ error: "Event not found" });
 		}
 
-		console.log(event.participants.length);
 		res.json(event);
 	},
 };

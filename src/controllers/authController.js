@@ -60,7 +60,6 @@ const authController = {
 		// The Users model is used to create a new user
 		// The create method creates a new user with the provided data (here userData)
 		const user = await Users.create(userData);
-		console.log(user);
 
 		// Return a 201 status code with a success message
 		return res.status(201).json({ message: "User created successfully" });

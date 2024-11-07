@@ -13,8 +13,6 @@ const isLoggedIn = async (req, res, next) => {
   // Remove the Bearer prefix from the token (if it exists)
   const tokenWhithoutBearer = token ? token.slice(7) : null;
 
-  console.log(token);
-
   // If the token is not provided, return a 401 status code with a message
   if (!token) {
     return res.status(401).json({ message: 'Token is required' });
