@@ -1,4 +1,5 @@
 import { z } from "zod";
+import bcrypt from "bcrypt";
 import multer from "multer";
 import { Users, Tag, Event} from "../models/index.js";
 
@@ -43,13 +44,14 @@ const meController = {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		const { userName, age, picture, hometown, bio } = req.body;
+		const { userName, age, picture, hometown, bio, password } = req.body;
 
 		user.userName = req.body.userName || user.userName;
 		user.age = Number.parseInt(req.body.age) || user.age;
 		user.picture = req.body.picture || user.picture;
 		user.hometown = req.body.hometown || user.hometown;
 		user.bio = req.body.bio || user.bio;
+		user.password = bcrypt.hashSync(req.body.password, 10) || user.password;
 
 		user.save();
 
