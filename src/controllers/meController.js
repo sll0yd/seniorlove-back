@@ -1,6 +1,9 @@
 import { z } from "zod";
-import bcrypt from "bcrypt";
-import multer from "multer";
+// multer is a middleware for handling multipart/form-data, which is primarily used for uploading files
+// The multer middleware is used to upload files to the server
+// The multer middleware is configured with the storage configuration in the utils/storageService.js file
+// The storage configuration specifies the destination and filename of the uploaded files
+import multer from "./utils/storageService.js";
 import { Users, Tag, Event} from "../models/index.js";
 
 const meController = {
@@ -74,31 +77,9 @@ const meController = {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		// Configure the multer middleware
-		// The diskStorage method is used to configure the storage engine
-		// The storage engine is used to determine where to store the uploaded files
-		const storage = multer.diskStorage({
-			// Define the destination and filename for the uploaded file
-
-			// The destination is a function that determines where to store the uploaded file
-			destination: (req, file, cb) => {
-				// The destination is the uploads folder
-				cb(null, "uploads/");
-			},
-			// The filename is the name of the file
-			filename: (req, file, cb) => {
-				// Generate a unique filename using the current date and a random number between 0 and 1E9
-				// The random number is used to ensure that the filename is unique
-				const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`
-				// Call the callback with the filename as the second argument (null is the first argument)
-				// file.fieldname is the name of the field in the front-end form (here "picture")
-				cb(null, `${file.fieldname}-${uniqueSuffix}`)
-			},
-		});
-
 		// Create an instance of the multer middleware with the storage configuration and the field name "picture" (must match the name attribute in the form)
 		// The single method is used to upload a single file
-		const upload = multer({ storage }).single("picture");
+		const upload = multer.single("picture");
 
 		// Call the multer middleware with the request, response, and an error handler
 		// The error handler is called if there is an error during the upload
@@ -375,24 +356,24 @@ const meController = {
 		if (user.id !== eventToBeFind.creator.id) {
 			return res.status(403).json({ error: "User is not the creator of the event" });
 		}
-
-		const storage = multer.diskStorage({
-			destination: (req, file, cb) => {
-				cb(null, "uploads/");
-			},
-			filename: (req, file, cb) => {
-				cb(null, file.originalname);
-			},
-		});
-
-		const upload = multer({ storage: storage }).single("picture");
+		
+		const upload = multer.single("picture");
 
 		upload(req, res, (err) => {
-			if (err) {
+		if (err) {
 				return res.status(500).json({ error: err.message });
 			}
-			res.json({ message: "File uploaded successfully" });
-		});
+
+		if (!req.file) {
+			return res.status(400).json({ error: "No file uploaded" });
+		}
+
+		eventToBeFind.picture = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+
+		eventToBeFind.save();
+
+		res.json({ message: "Event picture uploaded" });
+	});
 	},
 	async updateOwnedEvent(req, res) {
 		const id = Number.parseInt(req.user.id);
