@@ -9,7 +9,7 @@ import { Users, Tag, Event} from "../models/index.js";
 const meController = {
 
 	async getSelfProfile(req, res) {
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
@@ -35,7 +35,7 @@ const meController = {
 	},
 	async updateSelfProfile(req, res) {
 		
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
@@ -62,7 +62,7 @@ const meController = {
 	},
 	async uploadProfilePicture(req, res) {
 		// Get the user id from the req.user object (the authenticated user)
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 
 		// Check if the user id is a number
 		if (Number.isNaN(id)) {
@@ -107,7 +107,7 @@ const meController = {
 		});
 	},
 	async deleteSelfProfile(req, res) {
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
@@ -118,7 +118,7 @@ const meController = {
 		res.json({ message: "User deleted" });
 	},
 	async assignTagToSelfProfile(req, res) {
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 		const tagId = Number.parseInt(req.params.tagId);
 
 		if (Number.isNaN(id)) {
@@ -183,7 +183,7 @@ const meController = {
 		// Destructure the validated request body into individual variables
 		const { title, picture, description, date, location } = req.body;
 		// Get the creator ID from the authenticated user
-		const creator_id = req.user.id;
+		const creator_id = req.userId;
 
 		// Create a new event with the validated data
 		const event = await Event.create({
@@ -199,7 +199,7 @@ const meController = {
 		res.json(event);
 	},
 	async removeTagFromSelfProfile(req, res) {
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 		const tagId = Number.parseInt(req.params.tagId);
 
 		if (Number.isNaN(id)) {
@@ -246,7 +246,7 @@ const meController = {
 	async getSelfCreatedEvents(req, res) {
 		// Get the user id from the req.user object
 		// Convert the user id to a number
-		const id = Number.parseInt(req.user.id, 10);
+		const id = Number.parseInt(req.userId, 10);
 
 		// Check if the user id is a number
 		if (Number.isNaN(id)) {
@@ -281,7 +281,7 @@ const meController = {
 		res.json(user.createdEvents);
 	},
 	async getOneOwnedEvent(req, res) {
-		const id = Number.parseInt(req.user.id);
+		const id = Number.parseInt(req.userId);
 		const eventId = Number.parseInt(req.params.eventId);
 
 		if (Number.isNaN(id)) {
@@ -324,7 +324,7 @@ const meController = {
 		res.json(eventToBeFind);
 	},
 	async uploadEventPicture(req, res) {
-		const id = Number.parseInt(req.user.id);
+		const id = Number.parseInt(req.userId);
 		const eventId = Number.parseInt(req.params.eventId);
 
 		if (Number.isNaN(id)) {
@@ -376,7 +376,7 @@ const meController = {
 	});
 	},
 	async updateOwnedEvent(req, res) {
-		const id = Number.parseInt(req.user.id);
+		const id = Number.parseInt(req.userId);
 		const eventId = Number.parseInt(req.params.eventId);
 
 		if (Number.isNaN(id)) {
@@ -422,7 +422,7 @@ const meController = {
 		res.json(eventToBeFind);
 	},
 	async deleteOwnedEvent(req, res) {
-		const id = Number.parseInt(req.user.id);
+		const id = Number.parseInt(req.userId);
 		const eventId = Number.parseInt(req.params.eventId);
 
 		if (Number.isNaN(id)) {
@@ -460,7 +460,7 @@ const meController = {
 		res.json(eventToBeFind);
 	},
 	async addTagToOwnedEvent(req, res) {
-		const id = Number.parseInt(req.user.id);
+		const id = Number.parseInt(req.userId);
 		const eventId = Number.parseInt(req.params.eventId);
 		const tagId = Number.parseInt(req.params.tagId);
 
@@ -517,7 +517,7 @@ const meController = {
 		res.json(eventToBeFind);
 	},
 	async removeTagFromOwnedEvent(req, res) {
-		const id = Number.parseInt(req.user.id);
+		const id = Number.parseInt(req.userId);
 		const eventId = Number.parseInt(req.params.eventId);
 		const tagId = Number.parseInt(req.params.tagId);
 
