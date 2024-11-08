@@ -58,7 +58,7 @@ const eventController = {
 				// Include the participants of the event
 				{
 					model: Users,
-					as: "participants",
+					as: "attendees",
 					attributes: ["id", "userName", "picture"],
 					through: {
 						attributes: [],
