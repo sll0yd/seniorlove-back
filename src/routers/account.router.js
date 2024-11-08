@@ -23,4 +23,7 @@ router.delete("/me/events/:eventId", isLoggedIn, cw(meController.deleteOwnedEven
 router.post("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.addTagToOwnedEvent));
 router.delete("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.removeTagFromOwnedEvent));
 
+router.post("/me/events/join/:eventId", isLoggedIn, cw(meController.addMeToEvent));
+router.delete("/me/events/join/:eventId", isLoggedIn, cw(meController.removeMeFromEvent));
+
 export default router;
