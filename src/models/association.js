@@ -44,7 +44,7 @@ Users.belongsToMany(Event, {
 });
 Event.belongsToMany(Users, {
 	through: "event_participants",
-	as: "participants",
+	as: "attendees",
 	foreignKey: "event_id",
 });
 
