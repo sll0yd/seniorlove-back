@@ -577,6 +577,82 @@ const meController = {
 
 		res.json(eventToBeFind);
 	},
+	async addMeToEvent(req, res) {
+		const id = parseInt(req.userId);
+		const eventId = Number.parseInt(req.params.eventId);
+
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}
+
+		if (Number.isNaN(eventId)) {
+			return res.status(400).json({ error: "Invalid event id" });
+		}	
+
+		const eventToBeFind = await Event.findByPk(eventId, {
+			include: [{
+				model: Users,
+				as: "attendees",
+				attributes: ["id", "userName", "picture"],
+			}],
+		});
+
+		if (!eventToBeFind) {
+			return res.status(404).json({ error: "Event not found" });
+		}
+
+		const user = await Users.findByPk(id);
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		if (eventToBeFind.attendees.some((u) => u.id === user.id)) {
+			return res.status(400).json({ error: "User is already in the event" });
+		}
+
+		await eventToBeFind.addAttendee(user);
+
+		await res.json(eventToBeFind);
+	},
+	async removeMeFromEvent(req, res) {
+		const id = parseInt(req.userId);
+		const eventId = Number.parseInt(req.params.eventId);
+
+		if (Number.isNaN(id)) {
+			return res.status(400).json({ error: "Invalid user id" });
+		}
+
+		if (Number.isNaN(eventId)) {
+			return res.status(400).json({ error: "Invalid event id" });
+		}	
+
+		const eventToBeFind = await Event.findByPk(eventId, {
+			include: [{
+				model: Users,
+				as: "attendees",
+				attributes: ["id", "userName", "picture"],
+			}],
+		});
+
+		if (!eventToBeFind) {
+			return res.status(404).json({ error: "Event not found" });
+		}
+
+		const user = await Users.findByPk(id);
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		if (!eventToBeFind.attendees.some((u) => u.id === user.id)) {
+			return res.status(400).json({ error: "User is not in the event" });
+		}
+
+		eventToBeFind.removeAttendee(user);
+
+		res.json(eventToBeFind);
+	},
 };
 
 export default meController;
