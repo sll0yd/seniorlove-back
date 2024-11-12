@@ -2,6 +2,7 @@ import { Router } from "express";
 import { controllerWrapper as cw } from "./controller-wrapper.js";
 import isLoggedIn from "../middlewares/isLoggedIn.js"
 import meController from "../controllers/meController.js";
+import messageController from "../controllers/messageController.js";
 
 const router = Router();
 
@@ -25,5 +26,8 @@ router.delete("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.rem
 
 router.post("/me/events/join/:eventId", isLoggedIn, cw(meController.addMeToEvent));
 router.delete("/me/events/join/:eventId", isLoggedIn, cw(meController.removeMeFromEvent));
+
+router.post("/me/messages/:receiverId", isLoggedIn, cw(messageController.createMessage));
+router.get("/me/messages/:receiverId", isLoggedIn, cw(messageController.getMessages));
 
 export default router;
