@@ -67,9 +67,11 @@ Users.hasMany(Message, {
 });
 Message.belongsTo(Users, {
 	foreignKey: "sender_id",
+	as: "sender",
 });
 Message.belongsTo(Users, {
 	foreignKey: "receiver_id",
+	as: "receiver",
 });
 
 Testimony.belongsTo(Users, {
