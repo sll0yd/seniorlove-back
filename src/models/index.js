@@ -3,6 +3,7 @@
 // import models with associations from association.js
 import {
 	sequelize,
+	Admin,
 	Users,
 	Event,
 	Tag,
@@ -11,4 +12,4 @@ import {
 } from "./association.js";
 
 // export models to be used in controllers
-export { sequelize, Users, Event, Tag, Message, Testimony };
+export { sequelize, Admin, Users, Event, Tag, Message, Testimony };
