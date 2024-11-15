@@ -5,7 +5,11 @@ BEGIN;
 
 INSERT INTO "admin" ("userName", "email", "password", "role")
 VALUES
-  ('ASMAL', 'asmal@gmail.com', 'admin', 'admin')
+  ('Louis', 'louis-antonin-lesieur@admin.fr', '$2b$10$Nje6cod/pMLKf4GzZFCpP.zCLEy0n7YEVtzPpHqA8NkYnO6qq180K', 'admin'),
+  ('Marc', 'marc-barbieri@admin.fr', '$2b$10$P6j0yizxIosxtDOTq8ds8.vycFwcfANUuPBNwLxd55LwZI0jK8fXq', 'admin'),
+  ('Adrien', 'adrien-rimbault@admin.fr', '$2b$10$yAevriL.Qtrdtbp3lrd2YulNV09iXn/OwsiSUjlC0vXb8GLSKyESG', 'admin'),
+  ('Stevens', 'stevens-lapasse@admin.fr', '$2b$10$M.Klu1HHmpW6MBzLOCoxG.foAkZxDYurb2OoEtxdLahAEqopTIZAi', 'admin'),
+  ('Alexandre', 'alexandre-sampaio@admin.fr', '$2b$10$h2mcBpBAoCCbyVxmwda9te178P0BvkppZOdVy2Lq0aGFJKxqXu8XG', 'admin')
   ;
 
 -- Below blocks are to seed tables in database with random data --
