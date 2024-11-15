@@ -6,28 +6,30 @@ import messageController from "../controllers/messageController.js";
 
 const router = Router();
 
-router.get("/me", isLoggedIn, cw(meController.getSelfProfile));
-router.patch("/me", isLoggedIn, cw(meController.updateSelfProfile));
-router.delete("/me", isLoggedIn, cw(meController.deleteSelfProfile));
+router.use(isLoggedIn);
 
-router.post("/me/profile_picture", isLoggedIn, cw(meController.uploadProfilePicture));
+router.get("/me", cw(meController.getSelfProfile));
+router.patch("/me", cw(meController.updateSelfProfile));
+router.delete("/me", cw(meController.deleteSelfProfile));
 
-router.post("/me/tags/:tagId", isLoggedIn, cw(meController.assignTagToSelfProfile));
-router.delete("/me/tags/:tagId", isLoggedIn, cw(meController.removeTagFromSelfProfile));
+router.post("/me/profile_picture", cw(meController.uploadProfilePicture));
 
-router.post("/me/events", isLoggedIn, cw(meController.createAnEvent));
-router.get("/me/events", isLoggedIn, cw(meController.getSelfCreatedEvents));
-router.get("/me/events/:eventId", isLoggedIn, cw(meController.getOneOwnedEvent));
-router.post("/me/events/:eventId/event_picture", isLoggedIn, cw(meController.uploadEventPicture));
-router.patch("/me/events/:eventId", isLoggedIn, cw(meController.updateOwnedEvent));
-router.delete("/me/events/:eventId", isLoggedIn, cw(meController.deleteOwnedEvent));
-router.post("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.addTagToOwnedEvent));
-router.delete("/me/events/:eventId/tags/:tagId", isLoggedIn, cw(meController.removeTagFromOwnedEvent));
+router.post("/me/tags/:tagId", cw(meController.assignTagToSelfProfile));
+router.delete("/me/tags/:tagId", cw(meController.removeTagFromSelfProfile));
 
-router.post("/me/events/join/:eventId", isLoggedIn, cw(meController.addMeToEvent));
-router.delete("/me/events/join/:eventId", isLoggedIn, cw(meController.removeMeFromEvent));
+router.post("/me/events", cw(meController.createAnEvent));
+router.get("/me/events", cw(meController.getSelfCreatedEvents));
+router.get("/me/events/:eventId", cw(meController.getOneOwnedEvent));
+router.post("/me/events/:eventId/event_picture", cw(meController.uploadEventPicture));
+router.patch("/me/events/:eventId", cw(meController.updateOwnedEvent));
+router.delete("/me/events/:eventId", cw(meController.deleteOwnedEvent));
+router.post("/me/events/:eventId/tags/:tagId", cw(meController.addTagToOwnedEvent));
+router.delete("/me/events/:eventId/tags/:tagId", cw(meController.removeTagFromOwnedEvent));
 
-router.post("/me/messages/:receiverId", isLoggedIn, cw(messageController.createMessage));
-router.get("/me/messages/:receiverId", isLoggedIn, cw(messageController.getMessages));
+router.post("/me/events/join/:eventId", cw(meController.addMeToEvent));
+router.delete("/me/events/join/:eventId", cw(meController.removeMeFromEvent));
+
+router.post("/me/messages/:receiverId", cw(messageController.createMessage));
+router.get("/me/messages/:receiverId", cw(messageController.getMessages));
 
 export default router;

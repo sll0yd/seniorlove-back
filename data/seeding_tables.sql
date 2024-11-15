@@ -3,6 +3,11 @@
 -- BEGIN is used to start a new transaction --
 BEGIN;
 
+INSERT INTO "admin" ("userName", "email", "password", "role")
+VALUES
+  ('ASMAL', 'asmal@gmail.com', 'admin', 'admin')
+  ;
+
 -- Below blocks are to seed tables in database with random data --
 INSERT INTO "users" ("userName", "gender", "picture", "role", "email", "password", "age", "hometown", "bio")
 VALUES
