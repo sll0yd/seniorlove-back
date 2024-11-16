@@ -68,12 +68,9 @@ const adminController = {
     const events = await Event.findAll({
       attributes: ["id", "title", "description", "location", "date", "picture"],
       include: {
-        model: Tag,
-        as: "tags",
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
+        model: Users,
+        as: "creator",
+        attributes: ["id", "userName", "picture"],
       },
     });
     res.render("events", { events });
