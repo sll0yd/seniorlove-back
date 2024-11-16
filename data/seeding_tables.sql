@@ -15,31 +15,36 @@ VALUES
 -- Below blocks are to seed tables in database with random data --
 INSERT INTO "users" ("userName", "gender", "picture", "role", "email", "password", "age", "hometown", "bio")
 VALUES
-  ('Alice', 'F', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO1@example.com', 'password1', 25, 'New York', 'Hello, I am Alice!'),
-  ('Bob', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO2@example.com', 'password2', 30, 'Los Angeles', 'Hello, I am Bob!'),
-  ('Charlie', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO3@example.com', 'password3', 35, 'Chicago', 'Hello, I am Charlie!'),
-  ('David', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO4@example.com', 'password4', 40, 'Houston', 'Hello, I am David!'),
-  ('Eve', 'F', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO5@example.com', 'password5', 45, 'Philadelphia', 'Hello, I am Eve!'),
-  ('Frank', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO6@example.com', 'password6', 50, 'San Francisco', 'Hello, I am Frank!'),
-  ('Grace', 'F', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO7@example.com', 'password7', 55, 'Seattle', 'Hello, I am Grace!'),
-  ('Henry', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO8@example.com', 'password8', 60, 'Boston', 'Hello, I am Henry!'),
-  ('Isabella', 'F', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO9@example.com', 'password9', 65, 'Denver', 'Hello, I am Isabella!'),
-  ('Jack', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO10@example.com', 'password10', 70, 'Minneapolis', 'Hello, I am Jack!'),
-  ('Marc', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'member', '4o4oO11@example.com', 'password11', 37, 'Avignon', 'Bonjour, I am Marc and I love Burgers!'),
-  ('ASMAL', 'M', 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg', 'admin', 'asmal@gmail.com', 'motdepasse12345', 134, 'Austin', 'Hey, we do love burger and fried chicken!')
+  ('Aline', 'F', 'http://localhost:3000/uploads/aline.jpg', 'member', 'aline@example.com', 'password', 67, 'Paris', 'Bonjour, je suis Aline. J''adore les balades en forêt et les week-ends musicaux !'),
+  ('Bernard', 'M', 'http://localhost:3000/uploads/bernard.jpg', 'member', 'bernard@example.com', 'password', 61, 'Monaco', 'Enchanté, Bernard, 61 ans, je serais ravi de vous rencontrer afin d''échanger quelques mots !'),
+  ('Alain', 'M', 'http://localhost:3000/uploads/alain.jpg', 'member', 'alain@example.com', 'password', 71, 'Villeneuve', 'J''ai une belle moustache mais pas que !... J''ai aussi un grand coeur !'),
+  ('Michel', 'M', 'http://localhost:3000/uploads/michel.jpg', 'member', 'michel@example.com', 'password', 68, 'Bordeaux', 'Coucou, je suis Michel et je suis un grand fan de la musique !'),
+  ('Jim', 'M', 'http://localhost:3000/uploads/jim.jpg', 'member', 'jim@example.com', 'password', 60, 'Metz', 'Bienvenu sur mon profil, je suis ophtalmo, mais avant tout je suis Jim ! Vu mon prénom, vous vous doutez que j''aime les ballades !'),
+  ('Josiane', 'F', 'http://localhost:3000/uploads/josiane.jpg', 'member', 'josiane@example.com', 'password', 69, 'Saint-Tropez', 'Très peu de choses à dire sur moi, je suis Josiane et j''aime les sorties en mer.'),
+  ('Grace', 'F', 'http://localhost:3000/uploads/grace.jpg', 'member', 'grace@example.com', 'password', 55, 'Lille', 'Bonjour à toutes et à tous, Grace, jeune retraitée, je suis à la recherche de nouvelles rencontres. A bientôt peut-être...!'),
+  ('Claude', 'M', 'http://localhost:3000/uploads/claude.jpg', 'member', 'claude@example.com', 'password', 75, 'Pau', 'Claude, 75 ans, je suis un grand fan de jardinage et de musique classique.'),
+  ('Jacques', 'M', 'http://localhost:3000/uploads/jacques.jpg', 'member', 'jacques@example.com', 'password', 70, 'Dijon', 'Je suis Jacques, 70 ans, je collectionne les timbres depuis plus de 50 ans, ainsi que les pots de moutarde.'),
+  ('Roland', 'M', 'http://localhost:3000/uploads/roland.jpg', 'member', 'roland@example.com', 'password', 70, 'Caen', 'Hâte de vous rencontrer, je suis Roland, 70 ans, et je suis un grand fan de la musique classique. J''aime aussi les sorties en mer.'),
+  ('Marc', 'M', 'http://localhost:3000/uploads/marc.jpg', 'member', 'marc@gmail.com', '$2b$10$UNldzbsbsiAsFSSTI6QDqO2FWm6OY3HBaYvRGZqMyboiuDRDpkuLu', 37, 'Avignon', 'Bonjour, je suis Marc and I love Burgers much more than les paillettes !'),
+  ('Hélène', 'F', 'http://localhost:3000/uploads/hélène.jpg', 'member', 'helene@example.com', 'password', 65, 'Marseille', 'Bonjour, je suis Hélène, 65 ans, j''aime les jeux de société et préparer des repas.'),
+  ('Danielle', 'F', 'http://localhost:3000/uploads/danielle.jpg', 'member', 'danielle@example.com', 'password', 79, 'Nantes', 'Grande fanatique des chapeaux, je cherche une nouvelle amitié !'),
+  ('Caroline', 'F', 'http://localhost:3000/uploads/caroline.jpg', 'member', 'caroline@example.com', 'password', 64, 'Lorient', 'Salut, Caro, anciennement professeur de Yoga, j''organise aujourd''hui des cours de Yoga pour les seniors.')
   ;
 
 INSERT INTO "event" ("title", "picture", "description", "date", "location", "creator_id")
 VALUES 
-  ('Ballade en forêt', 'https://cdn.pixabay.com/photo/2022/01/23/23/43/couple-6962202_1280.jpg', 'Nous vous proposons une ballade en forêt en compagnie de nos amis !', '29/10/2024', 'Marseille', 2),
-  ('Week-end musical', 'https://cdn.pixabay.com/photo/2017/11/02/20/31/guitars-2912447_1280.jpg', 'Partageons ensemble pour un week-end musical !', '29/10/2024', 'Normandie', 1 ),
-  ('Atelier dessin', 'https://cdn.pixabay.com/photo/2016/05/08/21/36/painting-1380016_1280.jpg', 'Venez titiller le crayon et le feutre dans un moment convivial.', '29/10/2024', 'Paname', 8),
-  ('Soirée piscine chez Marc', 'https://cdn.pixabay.com/photo/2015/07/10/15/01/water-839313_1280.jpg', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11)
+  ('Ballade en forêt', 'https://cdn.pixabay.com/photo/2022/01/23/23/43/couple-6962202_1280.jpg', 'Nous vous proposons une ballade en forêt en compagnie de nos amis !', '2/02/2025', 'Marseille', 2),
+  ('Week-end musical', 'https://cdn.pixabay.com/photo/2017/11/02/20/31/guitars-2912447_1280.jpg', 'Partageons ensemble pour un week-end musical !', '29/11/2024', 'Paris', 1 ),
+  ('Atelier dessin', 'https://cdn.pixabay.com/photo/2016/05/08/21/36/painting-1380016_1280.jpg', 'Venez titiller le crayon et le feutre dans un moment convivial.', '17/01/2025', 'Paris', 8),
+  ('Soirée piscine chez Marc', 'https://cdn.pixabay.com/photo/2015/07/10/15/01/water-839313_1280.jpg', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11),
+  ('Atelier de jardinage', 'https://images.pexels.com/photos/26827231/pexels-photo-26827231/free-photo-of-brouette.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 'Rencontrons-nous autour d''un pot (de fleurs biensûr) pour faire connaissance.', '29/10/2024', 'Paris', 8),
+  ('Soirée burgers', 'https://i.ytimg.com/vi/ws3WGmINlIg/maxresdefault.jpg', 'Vous connaissez mon amour pour les burgers, je vous propose qu''on fasse connaissance ensemble autour d''un cour de cuisinie sauce Texas', '7/12/2024', 'Avignon', 11),
+  ('Weekend en bord de mer et déjeuner', 'https://cdn.pixabay.com/photo/2017/09/09/18/54/beach-2733051_1280.jpg', 'Rendez-vous est donné à l''hôtel de ville, puis restaurant en groupe avec une vue magnifique sur la mer à Ouistreham.', '7/12/2024', 'Caen', 10)
   ;
 
 INSERT INTO "tag" ("name", "color")
 VALUES
-  ( 'Danse', 'bb5544'),
+  ( 'Danse', 'b92bcc'),
   ( 'Musique', 'bb5544'),
   ( 'Santé', '7766ee'),
   ( 'Bien-être', '3399ff'),
@@ -52,11 +57,33 @@ VALUES
 
 INSERT INTO "message" ("sender_id", "receiver_id", "content")
 VALUES
-  (1, 2, 'Hey, how are you?'),
-  (2, 1, 'I am fine, thanks!'),
-  (2, 1, 'What about you?'),
-  (3, 5, 'Hello u'),
-  (1, 9, 'I talked with him')
+  (11, 1, 'Bonjour Aline, venez gagner une médaille aux JO en rejoignant mon évènement s''il vous plait !'),
+  (1, 11, 'Bonjour Marc, je ne sais pas si je peux venir, je fais des burgers ce soir.'),
+  (11, 1, 'Ah mais c''est super parce que je suis un grand fan de burgers !'),
+  (1, 11, 'OK'),
+  (11, 1, 'Je peux en avoir un ?'),
+  (1, 11, 'Non'),
+  (1, 11, 'Dommage !'),
+  (11, 1, 'Je me languissais pourtant...'),
+  (1, 11, 'Je suis désolé, je ne peux pas vous en donner un, je les ai tous mangés !'),
+  (11, 1, 'Pas de soucis, je comprends !'),
+  (11, 2, 'Bonjour Bernard, je suis Marc, je suis un grand fan de la musique classique.'),
+  (2, 11, 'Bonjour Marc, je suis un grand fan de la musique classique également.'),
+  (11, 2, 'OK'),
+  (2, 11, 'OK'),
+  (11, 2, 'Je suis aussi un grand fan de la musique classique.'),
+  (2, 11, 'OK'),
+  (11, 2, 'Rien de plus ? Non parce que je suis aussi un grand fan de la musique classique.'),
+  (11, 3, 'Bonjour Alain, venez gagner une médaille aux JO en rejoignant mon évènement s''il vous plait !'),
+  (3, 11, 'Bonjour Marc, je ne sais pas si je peux venir, je fais des burgers avec Aline ce soir.'),
+  (11, 3, 'Ah mais c''est super parce que je suis un grand fan de burgers !'),
+  (3, 11, 'Aline m''a dit ça oui.'),
+  (11, 3, 'Je peux en avoir un ?'),
+  (3, 11, 'Non, toujours pas.'),
+  (3, 11, 'Dommage !'),
+  (11, 3, 'Je me languissais pourtant...'),
+  (3, 11, 'Je suis désolé, je ne peux pas vous en donner un, je les ai tous mangés !'),
+  (11, 3, 'Pas de soucis, je comprends !')
   ;
 
 INSERT INTO "user_has_tag" ("user_id", "tag_id")
@@ -69,7 +96,29 @@ VALUES
   (3, 6),
   (4, 7),
   (4, 8),
-  (4, 9)
+  (4, 9),
+  (5, 1),
+  (5, 2),
+  (6, 3),
+  (6, 4),
+  (7, 5),
+  (7, 6),
+  (8, 7),
+  (8, 8),
+  (8, 9),
+  (9, 1),
+  (9, 2),
+  (10, 3),
+  (10, 4),
+  (11, 5),
+  (11, 6),
+  (12, 7),
+  (12, 8),
+  (12, 9),
+  (13, 1),
+  (13, 2),
+  (14, 3),
+  (14, 4)
   ;
 
 INSERT INTO "event_has_tag" ("event_id", "tag_id")
@@ -82,15 +131,45 @@ VALUES
   (3, 6),
   (4, 7),
   (4, 8),
-  (4, 9)
+  (4, 9),
+  (5, 1),
+  (5, 2),
+  (6, 3),
+  (6, 4),
+  (7, 5),
+  (7, 6)
   ;
 
 INSERT INTO "event_participants" ("user_id", "event_id")
 VALUES
   (1, 1),
+  (2, 1),
+  (3, 1),
   (2, 2),
+  (3, 2),
+  (4, 2),
+  (5, 3),
+  (6, 3),
+  (7, 3),
+  (8, 4),
+  (9, 4),
+  (10, 4),
+  (11, 5),
+  (12, 5),
+  (13, 5),
+  (14, 6),
   (3, 3),
-  (4, 4)
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 7),
+  (8, 1),
+  (9, 2),
+  (10, 3),
+  (11, 4),
+  (12, 5),
+  (13, 6),
+  (14, 7)
   ;
 
 INSERT INTO "testimonies" ("content", "user_id")
