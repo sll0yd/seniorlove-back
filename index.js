@@ -10,6 +10,8 @@ import { router as adminRouter } from "./src/routers/admin.index.js";
 
 const app = express(); // Create an express app assigned to 'app' variable
 
+app.disable("x-powered-by"); // Disable the X-Powered-By header
+
 app.set("view engine", "ejs"); // Set the view engine to EJS
 
 app.set("views","views"); // Set the views directory to the views folder
