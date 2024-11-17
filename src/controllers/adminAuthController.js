@@ -1,6 +1,7 @@
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import { Admin } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 const adminSchema = z.object({
   userName: z.string(),
@@ -18,6 +19,9 @@ const adminAuthController = {
       return res.status(400).json({ error: result.error });
     }
 
+    const sanitizedUserName = sanitizeHtml(userName);
+    const sanitizedEmail = sanitizeHtml(email);
+
     const adminExists = await Admin.findOne({ where: { email } });
 
     if (adminExists) {
@@ -27,8 +31,8 @@ const adminAuthController = {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const admin = await Admin.create({
-      userName,
-      email,
+      userName : sanitizedUserName,
+      email : sanitizedEmail,
       password: hashedPassword,
     });
 
@@ -49,11 +53,7 @@ const adminAuthController = {
         .status(404)
         .json({ error: "Something went wrong, please try again" });
     }
-
-    if (!admin.password) {
-      return res.status(401).json({ error: "Invalid password" });
-    }
-
+    
     const isValidPassword = await bcrypt.compare(password, admin.password);
 
     if (!isValidPassword) {

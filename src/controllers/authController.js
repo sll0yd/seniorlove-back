@@ -5,6 +5,7 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Users } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 // Define the user schema with the zod library
 // The schema defines the shape of the data that the user must provide
@@ -31,6 +32,10 @@ const authController = {
 		// Destructure the validated request body into individual variables
 		const { gender, userName, age, email, password } = result.data;
 
+		const sanitizedUserName = sanitizeHtml(userName);
+		const sanitizeAge = sanitizeHtml(age);
+		const sanitizedEmail = sanitizeHtml(email);
+
 		// Check if the user already exists in the database
 		const userExists = await Users.findOne({ where: { email } });
 
@@ -49,9 +54,9 @@ const authController = {
 		// Create a new user object with the validated data
 		const userData = {
 			gender,
-			userName,
-			age,
-			email,
+			userName: sanitizedUserName,
+			age: sanitizeAge,
+			email: sanitizedEmail,
 			// Give the password property the hashed password
 			password: hashedPassword,
 		};
@@ -64,7 +69,6 @@ const authController = {
 		// Return a 201 status code with a success message
 		return res.status(201).json({ message: "User created successfully" });
 	},
-
 	// Define the loginUser method
 	async loginUser(req, res) {
 		// Destructure the email and password from the request body

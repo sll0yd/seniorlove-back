@@ -1,4 +1,5 @@
 import { Event, Tag, Users } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 const eventController = {
 	async getAllEvents(req, res) {
@@ -27,7 +28,26 @@ const eventController = {
 				},
 			],
 		});
-		res.json(events);
+
+		const sanitizedEvents = events.map(event => ({
+			id: event.id,
+			title: sanitizeHtml(event.title),
+			description: sanitizeHtml(event.description),
+			location: sanitizeHtml(event.location),	
+			date: event.date,
+			picture: sanitizeHtml(event.picture),
+			creator: {
+				id: event.creator.id,
+				userName: sanitizeHtml(event.creator.userName),
+				picture: sanitizeHtml(event.creator.picture),
+			},
+			tags: event.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+		}));
+
+		res.json(sanitizedEvents);
 	},
 	async getOneEvent(req, res) {
     // Get the event ID from the URL
@@ -78,7 +98,30 @@ const eventController = {
 			return res.status(404).json({ error: "Event not found" });
 		}
 
-		res.json(event);
+		const sanitizedEvent = {
+			id: event.id,
+			title: sanitizeHtml(event.title),
+			description: sanitizeHtml(event.description),
+			location: sanitizeHtml(event.location),
+			date: sanitizeHtml(event.date),
+			picture: sanitizeHtml(event.picture),
+			tags: event.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+			attendees: event.attendees.map(attendee => ({
+				id: attendee.id,
+				userName: sanitizeHtml(attendee.userName),
+				picture: sanitizeHtml(attendee.picture),
+			})),
+			creator: {
+				id: event.creator.id,
+				userName: sanitizeHtml(event.creator.userName),
+				picture: sanitizeHtml(event.creator.picture),
+			},
+		};
+
+		res.json(sanitizedEvent);
 	},
 };
 

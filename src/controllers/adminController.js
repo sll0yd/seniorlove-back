@@ -1,13 +1,15 @@
 import { Admin, Users, Event, Tag } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 const adminController = {
   renderDashboard(req, res) {
+    const sanitizedAdmin = {
+      id: req.session.admin.id,
+      userName: sanitizeHtml(req.session.admin.userName),
+      picture: req.session.admin.picture,
+    };
     res.render("dashboard", {
-      admin: {
-        id: req.session.admin.id,
-        userName: req.session.admin.userName,
-        picture: req.session.admin.picture,
-      },
+      admin: sanitizedAdmin,
     });
   },
   async getAllUsers(req, res) {
@@ -22,7 +24,22 @@ const adminController = {
         },
       },
     });
-    res.render("users", { users });
+
+    const sanitizedUsers = users.map(user => ({
+      id: user.id,
+      userName: sanitizeHtml(user.userName),
+      email: sanitizeHtml(user.email),
+      role: sanitizeHtml(user.role),
+      gender: sanitizeHtml(user.gender),
+      age: user.age,
+      picture: sanitizeHtml(user.picture),
+      tags: user.tags.map(tag => ({
+        id: tag.id,
+        name: sanitizeHtml(tag.name),
+      })),
+    }));
+
+    res.render("users", { users: sanitizedUsers });
   },
   async getOneUser(req, res) {
     const id = Number.parseInt(req.params.id);
@@ -73,7 +90,22 @@ const adminController = {
         attributes: ["id", "userName", "picture"],
       },
     });
-    res.render("events", { events });
+
+    const sanitizedEvents = events.map(event => ({
+      id: event.id,
+      title: sanitizeHtml(event.title),
+      description: sanitizeHtml(event.description),
+      location: sanitizeHtml(event.location),
+      date: event.date,
+      picture: sanitizeHtml(event.picture),
+      creator: {
+        id: event.creator.id,
+        userName: sanitizeHtml(event.creator.userName),
+        picture: sanitizeHtml(event.creator.picture),
+      },
+    }));
+
+    res.render("events", { events: sanitizedEvents });
   },
   async getOneEvent(req, res) {
     const id = Number.parseInt(req.params.id);
@@ -117,7 +149,14 @@ const adminController = {
   },
   async getAllAdmins(req, res) {
     const admins = await Admin.findAll();
-    res.render("admins", { admins });
+
+    const sanitizedAdmins = admins.map(admin => ({
+      id: admin.id,
+      userName: sanitizeHtml(admin.userName),
+      email: sanitizeHtml(admin.email),
+    }));
+
+    res.render("admins", { admins: sanitizedAdmins });
   },
   async deleteOneAdmin(req, res) {
     const id = Number.parseInt(req.params.id);
