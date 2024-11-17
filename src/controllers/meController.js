@@ -1,9 +1,9 @@
-import { z } from "zod";
 // multer is a middleware for handling multipart/form-data, which is primarily used for uploading files
 // The multer middleware is used to upload files to the server
 // The multer middleware is configured with the storage configuration in the utils/storageService.js file
 // The storage configuration specifies the destination and filename of the uploaded files
 import multer from "./utils/storageService.js";
+import { z } from "zod";
 import { Users, Tag, Event} from "../models/index.js";
 import sanitizeHtml from "sanitize-html";
 
@@ -62,7 +62,7 @@ const meController = {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		const { userName, age, picture, hometown, bio, password } = req.body;
+		const { userName, age, picture, hometown, bio } = req.body;
 
 		const sanitizedUserName = userName ? sanitizeHtml(userName) : user.userName;
     const sanitizedPicture = picture ? sanitizeHtml(picture) : user.picture;
@@ -76,25 +76,20 @@ const meController = {
     user.picture = sanitizedPicture;
     user.hometown = sanitizedHometown;
     user.bio = sanitizedBio;
-		// user.password = bcrypt.hashSync(req.body.password, 10) || user.password;
 
 		user.save();
 
 		res.json(user);
 	},
 	async uploadProfilePicture(req, res) {
-		// Get the user id from the req.user object (the authenticated user)
 		const id = Number.parseInt(req.userId, 10);
 
-		// Check if the user id is a number
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
 		}
 
-		// Find the user in the database by id
 		const user = await Users.findByPk(id);
 
-		// Check if the user exists
 		if (!user) {
 			return res.status(404).json({ error: "User not found" });
 		}
@@ -121,10 +116,8 @@ const meController = {
 			// The BASE_URL environment variable is used to determine the base URL of the application
 			user.picture = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
 
-			// Save the user
 			user.save();
 
-			// Return the updated user
 			res.json(user);
 		});
 	},
@@ -270,11 +263,8 @@ const meController = {
 		res.json({ message: "Tag removed" });
 	},
 	async getSelfCreatedEvents(req, res) {
-		// Get the user id from the req.user object
-		// Convert the user id to a number
 		const id = Number.parseInt(req.userId, 10);
 
-		// Check if the user id is a number
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
 		}

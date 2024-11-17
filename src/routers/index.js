@@ -1,4 +1,4 @@
-// Import and use all routes here
+// Import all routes here
 import { Router } from "express";
 import authRoute from "./auth.router.js";
 import tagRoute from "./tag.router.js";

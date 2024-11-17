@@ -29,7 +29,6 @@ const usersController = {
 		}));
 		res.json(sanitizedUsers);
 	},
-
 	async getOneUser(req, res) {
 		const id = Number.parseInt(req.params.id);
 
