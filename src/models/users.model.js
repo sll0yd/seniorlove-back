@@ -1,10 +1,6 @@
-// users.model.js
-
-// Import necessary dependencies
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "./sequelize-client.js";
 
-// Create a new Sequelize model
 export class Users extends Model {}
 
 // Initialize the model with the appropriate configuration (regarding create_tables.sql)

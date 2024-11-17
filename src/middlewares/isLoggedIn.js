@@ -19,8 +19,7 @@ const isLoggedIn = async (req, res, next) => {
   // Check the token
   try {
 
-    // Decode the token using the verify method, giving the token and the JWT_SECRET from the .env file
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Decode the token using the verify method, giving the token and the JWT_SECRET from the .env file
 
     // If calls are in controllers, just send the user id in the request
     // req.user.id will be used in the controllers to get the user id from the database

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { Message, Users } from '../models/index.js';
 import { Op } from 'sequelize';
+import sanitizeHtml from 'sanitize-html';
 
 const schema = z.object({
   content: z.string(),
@@ -24,8 +25,10 @@ const messageController = {
 
     const content = req.body.content;
 
+    const sanitizedContent = sanitizeHtml(content);
+
     const newMessage = await Message.create({
-      content,
+      content: sanitizedContent,
       sender_id: sender,
       receiver_id: receiver,
     });
@@ -60,6 +63,10 @@ const messageController = {
     if (messages.length === 0) {
       return res.status(404).json({ error: "No messages yet" });
     }
+
+    messages.forEach(message => {
+      message.content = sanitizeHtml(message.content);
+    });
 
     res.status(200).json(messages);
   },

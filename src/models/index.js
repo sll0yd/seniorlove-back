@@ -1,5 +1,3 @@
-// index.js
-
 // import models with associations from association.js
 import {
 	sequelize,

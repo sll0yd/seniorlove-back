@@ -1,10 +1,8 @@
-// authController.js
-
-// Import the necessary dependencies
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Users } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 // Define the user schema with the zod library
 // The schema defines the shape of the data that the user must provide
@@ -18,57 +16,49 @@ const userSchema = z.object({
 
 // Declare the authController object
 const authController = {
-	// Define the createUser method
 	async createUser(req, res) {
-		// Validate the request body against the user schema
-		const result = userSchema.safeParse(req.body);
+		const result = userSchema.safeParse(req.body); // Validate the request body against the user schema
 
 		// If the validation fails, return a 400 status code with the error message
 		if (!result.success) {
 			return res.status(400).json({ error: result.error });
 		}
 
-		// Destructure the validated request body into individual variables
-		const { gender, userName, age, email, password } = result.data;
+		const { gender, userName, age, email, password } = result.data; // Destructure the validated request body into individual variables
 
-		// Check if the user already exists in the database
-		const userExists = await Users.findOne({ where: { email } });
+		const sanitizedUserName = sanitizeHtml(userName);
+		const sanitizeAge = sanitizeHtml(age);
+		const sanitizedEmail = sanitizeHtml(email);
+
+		const userExists = await Users.findOne({ where: { email } });	// Check if the user already exists in the database
 
 		// If the user already exists, return a 409 status code with the error message
 		if (userExists) {
 			return res.status(409).json({ message: "User already exists" });
 		}
 
-		// If the user does not exist, hash the password and create a new user
-
 		// Hash the password using bcrypt
-		// The bcrypt library is used to hash passwords
 		// The saltRounds parameter is the number of rounds used to generate the hash (here 10)
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		// Create a new user object with the validated data
+		// Create a new user object with the validated data and sanitized values
 		const userData = {
 			gender,
-			userName,
-			age,
-			email,
+			userName: sanitizedUserName,
+			age: sanitizeAge,
+			email: sanitizedEmail,
 			// Give the password property the hashed password
 			password: hashedPassword,
 		};
 
 		// Create a new user in the database
-		// The Users model is used to create a new user
-		// The create method creates a new user with the provided data (here userData)
 		const user = await Users.create(userData);
 
 		// Return a 201 status code with a success message
 		return res.status(201).json({ message: "User created successfully" });
 	},
-
-	// Define the loginUser method
 	async loginUser(req, res) {
-		// Destructure the email and password from the request body
-		const { email, password } = req.body;
+		const { email, password } = req.body; // Destructure the email and password from the request body
 
 		// If the email or password is missing, return a 400 status code with an error message
 		if (!email || !password) {
@@ -90,8 +80,7 @@ const authController = {
 				.json({ error: "Something went wrong, please try again" });
 		}
 
-		// Compare the provided password with the hashed password in the database
-		const isValidPassword = await bcrypt.compare(password, user.password);
+		const isValidPassword = await bcrypt.compare(password, user.password); // Compare the provided password with the hashed password in the database
 
 		// If the password is invalid, return a 401 status code with an error message
 		if (!isValidPassword) {

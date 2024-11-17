@@ -1,4 +1,5 @@
 import { Users, Tag } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 const usersController = {
 	async getAllUsers(req, res) {
@@ -12,9 +13,22 @@ const usersController = {
 				},
 			},
 		});
-		res.json(users);
-	},
 
+		const sanitizedUsers = users.map(user => ({
+			id: user.id,
+			userName: sanitizeHtml(user.userName),
+			email: sanitizeHtml(user.email),
+			role: sanitizeHtml(user.role),
+			gender: sanitizeHtml(user.gender),
+			age: user.age,
+			picture: sanitizeHtml(user.picture),
+			tags: user.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+		}));
+		res.json(sanitizedUsers);
+	},
 	async getOneUser(req, res) {
 		const id = Number.parseInt(req.params.id);
 
@@ -37,7 +51,21 @@ const usersController = {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		res.json(user);
+		const sanitizedUser = {
+			id: user.id,
+			userName: sanitizeHtml(user.userName),
+			email: sanitizeHtml(user.email),
+			role: sanitizeHtml(user.role),
+			gender: sanitizeHtml(user.gender),
+			age: user.age,
+			picture: sanitizeHtml(user.picture),
+			tags: user.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+		};
+
+		res.json(sanitizedUser);
 	},
 };
 

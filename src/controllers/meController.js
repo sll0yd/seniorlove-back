@@ -1,10 +1,11 @@
-import { z } from "zod";
 // multer is a middleware for handling multipart/form-data, which is primarily used for uploading files
 // The multer middleware is used to upload files to the server
 // The multer middleware is configured with the storage configuration in the utils/storageService.js file
 // The storage configuration specifies the destination and filename of the uploaded files
 import multer from "./utils/storageService.js";
+import { z } from "zod";
 import { Users, Tag, Event} from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 const meController = {
 
@@ -31,7 +32,21 @@ const meController = {
 			return res.status(404).json({ error: "User not found" });
 		}
 		
-		res.json(user);
+		const sanitizedUser = {
+			id: user.id,
+			userName: sanitizeHtml(user.userName),
+			email: sanitizeHtml(user.email),
+			age: sanitizeHtml(user.age),
+			picture: sanitizeHtml(user.picture),
+			hometown: sanitizeHtml(user.hometown),
+			bio: sanitizeHtml(user.bio),
+			tags: user.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+		};
+
+		res.json(sanitizedUser);
 	},
 	async updateSelfProfile(req, res) {
 		
@@ -47,32 +62,34 @@ const meController = {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		const { userName, age, picture, hometown, bio, password } = req.body;
+		const { userName, age, picture, hometown, bio } = req.body;
 
-		user.userName = req.body.userName || user.userName;
-		user.age = Number.parseInt(req.body.age) || user.age;
-		user.picture = req.body.picture || user.picture;
-		user.hometown = req.body.hometown || user.hometown;
-		user.bio = req.body.bio || user.bio;
-		// user.password = bcrypt.hashSync(req.body.password, 10) || user.password;
+		const sanitizedUserName = userName ? sanitizeHtml(userName) : user.userName;
+    const sanitizedPicture = picture ? sanitizeHtml(picture) : user.picture;
+    const sanitizedHometown = hometown ? sanitizeHtml(hometown) : user.hometown;
+    const sanitizedBio = bio ? sanitizeHtml(bio) : user.bio;
+    const parsedAge = age ? Number.parseInt(age, 10) : user.age;
+
+
+    user.userName = sanitizedUserName;
+    user.age = Number.isNaN(parsedAge) ? user.age : parsedAge;
+    user.picture = sanitizedPicture;
+    user.hometown = sanitizedHometown;
+    user.bio = sanitizedBio;
 
 		user.save();
 
 		res.json(user);
 	},
 	async uploadProfilePicture(req, res) {
-		// Get the user id from the req.user object (the authenticated user)
 		const id = Number.parseInt(req.userId, 10);
 
-		// Check if the user id is a number
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
 		}
 
-		// Find the user in the database by id
 		const user = await Users.findByPk(id);
 
-		// Check if the user exists
 		if (!user) {
 			return res.status(404).json({ error: "User not found" });
 		}
@@ -99,10 +116,8 @@ const meController = {
 			// The BASE_URL environment variable is used to determine the base URL of the application
 			user.picture = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
 
-			// Save the user
 			user.save();
 
-			// Return the updated user
 			res.json(user);
 		});
 	},
@@ -185,13 +200,17 @@ const meController = {
 		// Get the creator ID from the authenticated user
 		const creator_id = req.userId;
 
+		const sanitizedTitle = sanitizeHtml(title);
+		const sanitizedDescription = sanitizeHtml(description);
+		const sanitizedDate = sanitizeHtml(date);
+		const sanitizedLocation = sanitizeHtml(location);
+
 		// Create a new event with the validated data
 		const event = await Event.create({
-			title,
-			picture,
-			description,
-			date,
-			location,
+			title: sanitizedTitle,
+			description: sanitizedDescription,
+			date: sanitizedDate,
+			location: sanitizedLocation,
 			creator_id,
 		});
 
@@ -244,41 +263,50 @@ const meController = {
 		res.json({ message: "Tag removed" });
 	},
 	async getSelfCreatedEvents(req, res) {
-		// Get the user id from the req.user object
-		// Convert the user id to a number
 		const id = Number.parseInt(req.userId, 10);
 
-		// Check if the user id is a number
 		if (Number.isNaN(id)) {
 			return res.status(400).json({ error: "Invalid user id" });
 		}
 		
-		// Find the user in the database by id
-		// Include the created events in the response
-		const user = await Users.findByPk(id, {
-			include: {
-				model: Event,
-				// Specify the alias of the association
-				// In this case, we want to retrieve the created events
-				// The name of the association is "createdEvents"
-				as: "createdEvents",
-				attributes: ["id", "title", "description", "date", "location", "picture"],
-			},
+		const events = await Event.findAll({
+			where: { creatorId: id },
+			include: [
+				{
+					model: Tag,
+					as: "tags",
+					attributes: ["id", "name"],
+					through: {
+						attributes: [],
+					},
+				},
+				{
+					model: Users,
+					as: "creator",
+					attributes: ["id", "userName", "picture"],
+				},
+			],
 		});
-		
-		// Check if the user exists
-		if (!user) {
-			return res.status(404).json({ error: "User not found" });
-		}
 
-		// Check if the user has created events
-		// If the user has no created events, return a 404 status code with an error message
-		if (user.createdEvents.length === 0) {
-			return res.status(404).json({ error: "User has no created events" });
-		}
+		const sanitizedEvents = events.map(event => ({
+			id: event.id,
+			title: sanitizeHtml(event.title),
+			description: sanitizeHtml(event.description),
+			location: sanitizeHtml(event.location),
+			date: event.date,
+			picture: sanitizeHtml(event.picture),
+			creator: {
+				id: event.creator.id,
+				userName: sanitizeHtml(event.creator.userName),
+				picture: sanitizeHtml(event.creator.picture),
+			},
+			tags: event.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+		}));
 
-		// Return the created events
-		res.json(user.createdEvents);
+		res.json(sanitizedEvents);
 	},
 	async getOneOwnedEvent(req, res) {
 		const id = Number.parseInt(req.userId);
@@ -311,17 +339,25 @@ const meController = {
 			return res.status(404).json({ error: "Event not found" });
 		}
 
-		const user = await Users.findByPk(id);
+		const sanitizedEvent = {
+			id: eventToBeFind.id,
+			title: sanitizeHtml(eventToBeFind.title),
+			description: sanitizeHtml(eventToBeFind.description),
+			location: sanitizeHtml(eventToBeFind.location),
+			date: eventToBeFind.date,
+			picture: sanitizeHtml(eventToBeFind.picture),
+			creator: {
+				id: eventToBeFind.creator.id,
+				userName: sanitizeHtml(eventToBeFind.creator.userName),
+				picture: sanitizeHtml(eventToBeFind.creator.picture),
+			},
+			tags: eventToBeFind.tags.map(tag => ({
+				id: tag.id,
+				name: sanitizeHtml(tag.name),
+			})),
+		};
 
-		if (!user) {
-			return res.status(404).json({ error: "User not found" });
-		}
-
-		if (user.id !== eventToBeFind.creator.id) {
-			return res.status(403).json({ error: "User is not the creator of the event" });
-		}
-
-		res.json(eventToBeFind);
+		res.json(sanitizedEvent);
 	},
 	async uploadEventPicture(req, res) {
 		const id = Number.parseInt(req.userId);
@@ -399,23 +435,19 @@ const meController = {
 			return res.status(404).json({ error: "Event not found" });
 		}
 
-		const user = await Users.findByPk(id);
-
-		if (!user) {
-			return res.status(404).json({ error: "User not found" });
-		}
-
-		if (user.id !== eventToBeFind.creator.id) {
-			return res.status(403).json({ error: "User is not the creator of the event" });
-		}
-
 		const { title, description, date, location, picture } = req.body;
 
-		eventToBeFind.title = title || eventToBeFind.title;
-		eventToBeFind.description = description || eventToBeFind.description;
-		eventToBeFind.date = date || eventToBeFind.date;
-		eventToBeFind.location = location || eventToBeFind.location;
-		eventToBeFind.picture = picture || eventToBeFind.picture;
+		const sanitizedTitle = title ? sanitizeHtml(title) : eventToBeFind.title;
+		const sanitizedDescription = description ? sanitizeHtml(description) : eventToBeFind.description;
+		const sanitizedDate = date ? sanitizeHtml(date) : eventToBeFind.date;
+		const sanitizedLocation = location ? sanitizeHtml(location) : eventToBeFind.location;
+		const sanitizedPicture = picture ? sanitizeHtml(picture) : eventToBeFind.picture;
+
+		eventToBeFind.title = sanitizedTitle;
+		eventToBeFind.description = sanitizedDescription;
+		eventToBeFind.date = sanitizedDate;
+		eventToBeFind.location = sanitizedLocation;
+		eventToBeFind.picture = sanitizedPicture;
 
 		await eventToBeFind.save();
 
