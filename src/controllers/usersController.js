@@ -60,6 +60,7 @@ const usersController = {
 			gender: sanitizeHtml(user.gender),
 			age: user.age,
 			picture: sanitizeHtml(user.picture),
+			hometown: sanitizeHtml(user.hometown),
 			tags: user.tags.map(tag => ({
 				id: tag.id,
 				name: sanitizeHtml(tag.name),
