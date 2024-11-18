@@ -172,12 +172,11 @@ VALUES
   (14, 7)
   ;
 
-INSERT INTO "testimonies" ("content", "user_id")
+INSERT INTO "testimonies" ("content", "title", "user_id")
 VALUES
-  ('Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1),
-  ('Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 2),
-  ('Coucou michel ! Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3),
-  ('Lorem bernard ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.', 4)
+  ('Quelle soirée !', 'J''ai franchement beaucoup aimé rencontrer de nouveaux amis lors de ma soirée burgers.', 11),
+  ('De belles rencontres...', 'Quel moment merveilleux ! Grand moment de partage lors de notre ballade en forêt. Merci Senior Love!', 2),
+  ('Un moment inoubliable !', 'Je me suis beaucoup amusé en compagnie de mes amis lors de notre week-end musical.', 1)
   ;
 
 -- COMMIT is to end the transaction --

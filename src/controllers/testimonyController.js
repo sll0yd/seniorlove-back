@@ -1,4 +1,5 @@
 import { Testimony, Users } from "../models/index.js";
+import sanitizeHtml from "sanitize-html";
 
 const testimonyController = {
 	getAllTestimonies: async (req, res) => {
@@ -11,6 +12,11 @@ const testimonyController = {
 				},
 			}
 		);
+
+		testimonies.forEach((testimony) => {
+			testimony.content = sanitizeHtml(testimony.content);
+		});
+		
 		res.json(testimonies);
 	},
 };

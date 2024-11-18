@@ -6,6 +6,10 @@ export class Testimony extends Model {}
 // Initialize the model with the appropriate configuration (regarding create_tables.sql)
 Testimony.init(
 	{
+		title: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+		},
 		content: {
 			type: DataTypes.TEXT,
 			allowNull: false,
