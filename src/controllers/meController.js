@@ -270,7 +270,7 @@ const meController = {
 		}
 		
 		const events = await Event.findAll({
-			where: { creatorId: id },
+			where: { creator_id: id },
 			include: [
 				{
 					model: Tag,
