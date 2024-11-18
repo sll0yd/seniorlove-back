@@ -9,7 +9,7 @@ const eventController = {
 				{
 					model: Tag, // Specify the model to use
 					as: "tags", // Specify the alias to use (refer to the association in the models)
-					attributes: ["id", "name"], // Specify the attributes to retrieve from the Tag model
+					attributes: ["id", "name", "color"], // Specify the attributes to retrieve from the Tag model
 					// Define the attributes to retrieve from the intermediate model (e.g. events_tags)
 					// Not doing this will return all attributes from the intermediate model by default and we want to exclude them
 					through: {
@@ -41,6 +41,7 @@ const eventController = {
 			tags: event.tags.map(tag => ({
 				id: tag.id,
 				name: sanitizeHtml(tag.name),
+				color: sanitizeHtml(tag.color),
 			})),
 		}));
 
@@ -58,7 +59,7 @@ const eventController = {
 				{
 					model: Tag,
 					as: "tags",
-					attributes: ["id", "name"],
+					attributes: ["id", "name", "color"],
 					through: {
 						attributes: [],
 					},
@@ -93,6 +94,7 @@ const eventController = {
 			tags: event.tags.map(tag => ({
 				id: tag.id,
 				name: sanitizeHtml(tag.name),
+				color: sanitizeHtml(tag.color),
 			})),
 			attendees: event.attendees.map(attendee => ({
 				id: attendee.id,
