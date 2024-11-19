@@ -43,21 +43,27 @@ const adminAuthController = {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ error: "Email and password are required" });
+      return res.status(401).render("error", {
+        error: "401 | Email and password are required",
+      });
     }
 
     const admin = await Admin.findOne({ where: { email } });
 
     if (!admin) {
       return res
-        .status(404)
-        .json({ error: "Something went wrong, please try again" });
+        .status(401)
+        .render("error", {
+          error: "401 | Invalid email or password",
+        });
     }
     
     const isValidPassword = await bcrypt.compare(password, admin.password);
 
     if (!isValidPassword) {
-      return res.status(401).json({ error: "Invalid password" });
+      return res.render("error", {
+        error: "401 | Invalid email or password",
+      });
     }
 
     req.session.admin = admin;
@@ -76,9 +82,8 @@ const adminAuthController = {
         console.error("Failed to destroy session:", err);
         return res.status(500).json({ error: "Failed to logout" });
       }
-      res.clearCookie('connect.sid');
-      console.log("Session destroyed, redirecting to /");
-      res.redirect("/");
+      // console.log("Session destroyed, redirecting to /");
+      res.clearCookie('connect.sid').redirect("/");
     });
   },
 };
