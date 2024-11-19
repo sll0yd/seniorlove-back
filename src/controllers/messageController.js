@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { Message, Users } from '../models/index.js';
-import { Op } from 'sequelize';
+import sequelize, { Op } from 'sequelize';
 import sanitizeHtml from 'sanitize-html';
+
 
 const schema = z.object({
   content: z.string(),
@@ -34,6 +35,48 @@ const messageController = {
     });
 
     res.status(201).json(newMessage);
+  },
+
+  // ! TODO : Gestion d'erreur a faire : 
+  async getContacts (req, res) {
+    const sender = parseInt(req.userId);
+
+    const contacts = await Message.findAll({
+      where :{
+        [Op.or]: [
+          {sender_id: sender}, 
+          {receiver_id: sender}
+        ]
+      },
+      attributes: [
+        [sequelize.literal(`
+          CASE 
+          WHEN sender_id = ${sender} THEN receiver_id
+          WHEN receiver_id = ${sender} THEN sender_id
+          END
+          `), 'user_id']
+      ],
+      group: ['user_id', 'created_at'],
+      distinct: true,
+      raw:true,
+      order: [['created_at', 'DESC']]
+    });
+    console.log('contacts :>> ', contacts);
+    const conversations = contacts.map((contact) => contact.user_id);
+    console.log('conversations :>> ', conversations);
+
+    const users = await Users.findAll({
+      where: {
+        id: conversations,
+      },
+      attributes:['id', 'userName', 'picture'],
+      order: [
+        [sequelize.literal(`array_position(array[${conversations.join(',')}], id)`), 'ASC']
+      ]
+    });
+
+    console.log('users :>> ', users);
+    res.json(users)
   },
   async getMessages (req, res) {
     const sender = parseInt(req.userId);
