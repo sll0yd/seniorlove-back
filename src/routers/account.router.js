@@ -31,5 +31,5 @@ router.delete("/me/events/join/:eventId", cw(meController.removeMeFromEvent));
 
 router.post("/me/messages/:receiverId", cw(messageController.createMessage));
 router.get("/me/messages/:receiverId", cw(messageController.getMessages));
-
+router.get("/me/contacts", cw(messageController.getContacts))
 export default router;
