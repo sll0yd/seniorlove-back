@@ -15,31 +15,31 @@ VALUES
 -- Below blocks are to seed tables in database with random data --
 INSERT INTO "users" ("userName", "gender", "picture", "role", "email", "password", "age", "hometown", "bio")
 VALUES
-  ('Aline', 'F', 'http://localhost:3000/uploads/aline.jpg', 'member', 'aline@example.com', 'password', 67, 'Paris', 'Bonjour, je suis Aline. J''adore les balades en forêt et les week-ends musicaux !'),
-  ('Bernard', 'M', 'http://localhost:3000/uploads/bernard.jpg', 'member', 'bernard@example.com', 'password', 61, 'Monaco', 'Enchanté, Bernard, 61 ans, je serais ravi de vous rencontrer afin d''échanger quelques mots !'),
-  ('Alain', 'M', 'http://localhost:3000/uploads/alain.jpg', 'member', 'alain@example.com', 'password', 71, 'Villeneuve', 'J''ai une belle moustache mais pas que !... J''ai aussi un grand coeur !'),
-  ('Michel', 'M', 'http://localhost:3000/uploads/michel.jpg', 'member', 'michel@example.com', 'password', 68, 'Bordeaux', 'Coucou, je suis Michel et je suis un grand fan de la musique !'),
-  ('Jim', 'M', 'http://localhost:3000/uploads/jim.jpg', 'member', 'jim@example.com', 'password', 60, 'Metz', 'Bienvenu sur mon profil, je suis ophtalmo, mais avant tout je suis Jim ! Vu mon prénom, vous vous doutez que j''aime les ballades !'),
-  ('Josiane', 'F', 'http://localhost:3000/uploads/josiane.jpg', 'member', 'josiane@example.com', 'password', 69, 'Saint-Tropez', 'Très peu de choses à dire sur moi, je suis Josiane et j''aime les sorties en mer.'),
-  ('Grace', 'F', 'http://localhost:3000/uploads/grace.jpg', 'member', 'grace@example.com', 'password', 55, 'Lille', 'Bonjour à toutes et à tous, Grace, jeune retraitée, je suis à la recherche de nouvelles rencontres. A bientôt peut-être...!'),
-  ('Claude', 'M', 'http://localhost:3000/uploads/claude.jpg', 'member', 'claude@example.com', 'password', 75, 'Pau', 'Claude, 75 ans, je suis un grand fan de jardinage et de musique classique.'),
-  ('Jacques', 'M', 'http://localhost:3000/uploads/jacques.jpg', 'member', 'jacques@example.com', 'password', 70, 'Dijon', 'Je suis Jacques, 70 ans, je collectionne les timbres depuis plus de 50 ans, ainsi que les pots de moutarde.'),
-  ('Roland', 'M', 'http://localhost:3000/uploads/roland.jpg', 'member', 'roland@example.com', 'password', 70, 'Caen', 'Hâte de vous rencontrer, je suis Roland, 70 ans, et je suis un grand fan de la musique classique. J''aime aussi les sorties en mer.'),
-  ('Marc', 'M', 'http://localhost:3000/uploads/marc.jpg', 'member', 'marc@gmail.com', '$2b$10$UNldzbsbsiAsFSSTI6QDqO2FWm6OY3HBaYvRGZqMyboiuDRDpkuLu', 37, 'Avignon', 'Bonjour, je suis Marc and I love Burgers much more than les paillettes !'),
-  ('Hélène', 'F', 'http://localhost:3000/uploads/hélène.jpg', 'member', 'helene@example.com', 'password', 65, 'Marseille', 'Bonjour, je suis Hélène, 65 ans, j''aime les jeux de société et préparer des repas.'),
-  ('Danielle', 'F', 'http://localhost:3000/uploads/danielle.jpg', 'member', 'danielle@example.com', 'password', 79, 'Nantes', 'Grande fanatique des chapeaux, je cherche une nouvelle amitié !'),
-  ('Caroline', 'F', 'http://localhost:3000/uploads/caroline.jpg', 'member', 'caroline@example.com', 'password', 64, 'Lorient', 'Salut, Caro, anciennement professeur de Yoga, j''organise aujourd''hui des cours de Yoga pour les seniors.')
+  ('Aline', 'F', 'http://localhost:3000/uploads/aline.webp', 'member', 'aline@example.com', 'password', 67, 'Paris', 'Bonjour, je suis Aline. J''adore les balades en forêt et les week-ends musicaux !'),
+  ('Bernard', 'M', 'http://localhost:3000/uploads/bernard.webp', 'member', 'bernard@example.com', 'password', 61, 'Monaco', 'Enchanté, Bernard, 61 ans, je serais ravi de vous rencontrer afin d''échanger quelques mots !'),
+  ('Alain', 'M', 'http://localhost:3000/uploads/alain.webp', 'member', 'alain@example.com', 'password', 71, 'Villeneuve', 'J''ai une belle moustache mais pas que !... J''ai aussi un grand coeur !'),
+  ('Michel', 'M', 'http://localhost:3000/uploads/michel.webp', 'member', 'michel@example.com', 'password', 68, 'Bordeaux', 'Coucou, je suis Michel et je suis un grand fan de la musique !'),
+  ('Jim', 'M', 'http://localhost:3000/uploads/jim.webp', 'member', 'jim@example.com', 'password', 60, 'Metz', 'Bienvenu sur mon profil, je suis ophtalmo, mais avant tout je suis Jim ! Vu mon prénom, vous vous doutez que j''aime les ballades !'),
+  ('Josiane', 'F', 'http://localhost:3000/uploads/josiane.webp', 'member', 'josiane@example.com', 'password', 69, 'Saint-Tropez', 'Très peu de choses à dire sur moi, je suis Josiane et j''aime les sorties en mer.'),
+  ('Grace', 'F', 'http://localhost:3000/uploads/grace.webp', 'member', 'grace@example.com', 'password', 55, 'Lille', 'Bonjour à toutes et à tous, Grace, jeune retraitée, je suis à la recherche de nouvelles rencontres. A bientôt peut-être...!'),
+  ('Claude', 'M', 'http://localhost:3000/uploads/claude.webp', 'member', 'claude@example.com', 'password', 75, 'Pau', 'Claude, 75 ans, je suis un grand fan de jardinage et de musique classique.'),
+  ('Jacques', 'M', 'http://localhost:3000/uploads/jacques.webp', 'member', 'jacques@example.com', 'password', 70, 'Dijon', 'Je suis Jacques, 70 ans, je collectionne les timbres depuis plus de 50 ans, ainsi que les pots de moutarde.'),
+  ('Roland', 'M', 'http://localhost:3000/uploads/roland.webp', 'member', 'roland@example.com', 'password', 70, 'Caen', 'Hâte de vous rencontrer, je suis Roland, 70 ans, et je suis un grand fan de la musique classique. J''aime aussi les sorties en mer.'),
+  ('Marc', 'M', 'http://localhost:3000/uploads/marc.webp', 'member', 'marc@gmail.com', '$2b$10$UNldzbsbsiAsFSSTI6QDqO2FWm6OY3HBaYvRGZqMyboiuDRDpkuLu', 37, 'Avignon', 'Bonjour, je suis Marc and I love Burgers much more than les paillettes !'),
+  ('Hélène', 'F', 'http://localhost:3000/uploads/helene.webp', 'member', 'helene@example.com', 'password', 65, 'Marseille', 'Bonjour, je suis Hélène, 65 ans, j''aime les jeux de société et préparer des repas.'),
+  ('Danielle', 'F', 'http://localhost:3000/uploads/danielle.webp', 'member', 'danielle@example.com', 'password', 79, 'Nantes', 'Grande fanatique des chapeaux, je cherche une nouvelle amitié !'),
+  ('Caroline', 'F', 'http://localhost:3000/uploads/caroline.webp', 'member', 'caroline@example.com', 'password', 64, 'Lorient', 'Salut, Caro, anciennement professeur de Yoga, j''organise aujourd''hui des cours de Yoga pour les seniors.')
   ;
 
 INSERT INTO "event" ("title", "picture", "description", "date", "location", "creator_id")
 VALUES 
-  ('Ballade en forêt', 'https://cdn.pixabay.com/photo/2022/01/23/23/43/couple-6962202_1280.jpg', 'Nous vous proposons une ballade en forêt en compagnie de nos amis !', '2/02/2025', 'Marseille', 2),
-  ('Week-end musical', 'https://cdn.pixabay.com/photo/2017/11/02/20/31/guitars-2912447_1280.jpg', 'Partageons ensemble pour un week-end musical !', '29/11/2024', 'Paris', 1 ),
-  ('Atelier dessin', 'https://cdn.pixabay.com/photo/2016/05/08/21/36/painting-1380016_1280.jpg', 'Venez titiller le crayon et le feutre dans un moment convivial.', '17/01/2025', 'Paris', 8),
-  ('Soirée piscine chez Marc', 'https://cdn.pixabay.com/photo/2015/07/10/15/01/water-839313_1280.jpg', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11),
-  ('Atelier de jardinage', 'https://images.pexels.com/photos/26827231/pexels-photo-26827231/free-photo-of-brouette.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 'Rencontrons-nous autour d''un pot (de fleurs biensûr) pour faire connaissance.', '29/10/2024', 'Paris', 8),
-  ('Soirée burgers', 'https://i.ytimg.com/vi/ws3WGmINlIg/maxresdefault.jpg', 'Vous connaissez mon amour pour les burgers, je vous propose qu''on fasse connaissance ensemble autour d''un cour de cuisinie sauce Texas', '7/12/2024', 'Avignon', 11),
-  ('Weekend en bord de mer et déjeuner', 'https://cdn.pixabay.com/photo/2017/09/09/18/54/beach-2733051_1280.jpg', 'Rendez-vous est donné à l''hôtel de ville, puis restaurant en groupe avec une vue magnifique sur la mer à Ouistreham.', '7/12/2024', 'Caen', 10)
+  ('Ballade en forêt', 'http://localhost:3000/uploads/ballade.webp', 'Nous vous proposons une ballade en forêt en compagnie de nos amis !', '2/02/2025', 'Marseille', 2),
+  ('Week-end musical', 'http://localhost:3000/uploads/guitares.webp', 'Partageons ensemble pour un week-end musical !', '29/11/2024', 'Paris', 1 ),
+  ('Atelier dessin', 'http://localhost:3000/uploads/workshop.webp', 'Venez titiller le crayon et le feutre dans un moment convivial.', '17/01/2025', 'Paris', 8),
+  ('Soirée piscine chez Marc', 'http://localhost:3000/uploads/piscine.webp', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11),
+  ('Atelier de jardinage', 'http://localhost:3000/uploads/jardinage.webp', 'Rencontrons-nous autour d''un pot (de fleurs biensûr) pour faire connaissance.', '29/10/2024', 'Paris', 8),
+  ('Soirée burgers', 'http://localhost:3000/uploads/jones.webp', 'Vous connaissez mon amour pour les burgers, je vous propose qu''on fasse connaissance ensemble autour d''un cour de cuisinie sauce Texas', '7/12/2024', 'Avignon', 11),
+  ('Weekend en bord de mer et déjeuner', 'http://localhost:3000/uploads/plage.webp', 'Rendez-vous est donné à l''hôtel de ville, puis restaurant en groupe avec une vue magnifique sur la mer à Ouistreham.', '7/12/2024', 'Caen', 10)
   ;
 
 INSERT INTO "tag" ("name", "color")
