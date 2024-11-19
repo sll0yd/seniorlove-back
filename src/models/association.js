@@ -59,9 +59,11 @@ Users.hasMany(Event, {
 // Define associations between models Users and Messages
 Users.hasMany(Message, {
 	foreignKey: "sender_id",
+	as:'sended',
 });
 Users.hasMany(Message, {
 	foreignKey: "receiver_id",
+	as: "received"
 });
 Message.belongsTo(Users, {
 	foreignKey: "sender_id",
