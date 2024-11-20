@@ -37,6 +37,7 @@ const meController = {
 			userName: sanitizeHtml(user.userName),
 			email: sanitizeHtml(user.email),
 			age: sanitizeHtml(user.age),
+			gender: sanitizeHtml(user.gender),
 			picture: sanitizeHtml(user.picture),
 			hometown: sanitizeHtml(user.hometown),
 			bio: sanitizeHtml(user.bio),
