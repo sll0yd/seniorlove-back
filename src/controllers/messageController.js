@@ -36,8 +36,6 @@ const messageController = {
 
     res.status(201).json(newMessage);
   },
-
-  // ! TODO : Gestion d'erreur a faire : 
   async getContacts (req, res) {
     const sender = parseInt(req.userId);
 
@@ -61,9 +59,9 @@ const messageController = {
       raw:true,
       order: [['created_at', 'DESC']]
     });
-    console.log('contacts :>> ', contacts);
+    // console.log('contacts :>> ', contacts);
     const conversations = contacts.map((contact) => contact.user_id);
-    console.log('conversations :>> ', conversations);
+    // console.log('conversations :>> ', conversations);
 
     const users = await Users.findAll({
       where: {
@@ -75,7 +73,12 @@ const messageController = {
       ]
     });
 
-    console.log('users :>> ', users);
+    users.forEach(user => {
+      user.picture = sanitizeHtml(user.picture);
+      user.userName = sanitizeHtml(user.userName);
+    });
+
+    // console.log('users :>> ', users);
     res.json(users)
   },
   async getMessages (req, res) {
