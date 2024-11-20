@@ -62,7 +62,8 @@ const messageController = {
     // console.log('contacts :>> ', contacts);
     const conversations = contacts.map((contact) => contact.user_id);
     // console.log('conversations :>> ', conversations);
-
+    if(!conversations || !conversations.length) return res.status(404).json({error : "no conversation for this user."});
+    
     const users = await Users.findAll({
       where: {
         id: conversations,
