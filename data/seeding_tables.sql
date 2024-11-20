@@ -37,7 +37,7 @@ VALUES
   ('Week-end musical', 'http://localhost:3000/uploads/guitares.webp', 'Partageons ensemble pour un week-end musical !', '29/11/2024', 'Paris', 1 ),
   ('Atelier dessin', 'http://localhost:3000/uploads/workshop.webp', 'Venez titiller le crayon et le feutre dans un moment convivial.', '17/01/2025', 'Paris', 8),
   ('Soirée piscine chez Marc', 'http://localhost:3000/uploads/piscine.webp', 'Venez gagner une médaille aux JO avec le M', '29/10/2024', 'Avignon', 11),
-  ('Atelier de jardinage', 'http://localhost:3000/uploads/jardinage.webp', 'Rencontrons-nous autour d''un pot (de fleurs biensûr) pour faire connaissance.', '29/10/2024', 'Paris', 8),
+  ('Atelier de jardinage', 'http://localhost:3000/uploads/jardinage.webp', 'Rencontrons-nous autour d''un pot (de fleurs bien sûr) pour faire connaissance.', '29/10/2024', 'Paris', 8),
   ('Soirée burgers', 'http://localhost:3000/uploads/jones.webp', 'Vous connaissez mon amour pour les burgers, je vous propose qu''on fasse connaissance ensemble autour d''un cour de cuisinie sauce Texas', '7/12/2024', 'Avignon', 11),
   ('Weekend en bord de mer et déjeuner', 'http://localhost:3000/uploads/plage.webp', 'Rendez-vous est donné à l''hôtel de ville, puis restaurant en groupe avec une vue magnifique sur la mer à Ouistreham.', '7/12/2024', 'Caen', 10)
   ;
@@ -88,8 +88,8 @@ VALUES
 
 INSERT INTO "user_has_tag" ("user_id", "tag_id")
 VALUES
-  (1, 1),
-  (1, 2),
+  (1, 3),
+  (1, 7),
   (2, 3),
   (2, 4),
   (3, 5),
@@ -126,14 +126,14 @@ VALUES
   (1, 1),
   (1, 2),
   (2, 3),
-  (2, 4),
+  (2, 1),
+  (2, 2),
   (3, 5),
   (3, 6),
-  (4, 7),
-  (4, 8),
+  (4, 2),
+  (4, 4),
   (4, 9),
   (5, 1),
-  (5, 2),
   (6, 3),
   (6, 4),
   (7, 5),
