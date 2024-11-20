@@ -77,10 +77,17 @@ PROJECT ROOT
 ├── data
 │   ├── create_tables.sql
 │   └── seeding_tables.sql
+├── public
+│   └── css
+│       └── styles.css
+│   └── js
+│       └── adminMethods.js
 ├── src
 │   └── controllers
 │      └── utils
 │         └── storageService.js
+│      ├── adminAuthController.js
+│      ├── adminController.js
 │      ├── authController.js
 │      ├── eventController.js
 │      ├── meController.js
@@ -89,6 +96,7 @@ PROJECT ROOT
 │      ├── testimonyController.js
 │      └── usersController.js
 │   └── middlewares
+│      ├── authenticateAdmin.js
 │      └── isLoggedIn.js
 │   └── models
 │      └── tests
@@ -97,6 +105,7 @@ PROJECT ROOT
 │          ├── tag.model.test.js
 │          ├── testimony.model.test.js
 │          └── users.model.test.js
+│      ├── admin.model.js
 │      ├── association.js
 │      ├── event.model.js
 │      ├── index.js
@@ -107,6 +116,8 @@ PROJECT ROOT
 │      └── users.model.js
 │   └── routers
 │      ├── account.router.js
+│      ├── admin.index.js
+│      ├── adminAuth.router.js
 │      ├── auth.router.js
 │      ├── controller-wrapper.js
 │      ├── event.router.js
@@ -114,6 +125,18 @@ PROJECT ROOT
 │      ├── tag.router.js
 │      ├── testimony.router.js
 │      └── users.router.js
+├── uploads
+├── views
+│   └── partials
+│      ├── footer.ejs
+│      ├── header.ejs
+│      └── navbar.ejs
+│   ├── admins.ejs
+│   ├── connexion.ejs
+│   ├── dashboard.ejs
+│   ├── error.ejs
+│   ├── events.ejs
+│   └── users.ejs
 ├── .env.example
 ├── .gitignore
 ├── index.js
@@ -153,6 +176,3 @@ PROJECT ROOT
 | DELETE | /api/me/events/:eventId/tags/:tagId | Remove a tag from one owned event |
 | **TESTIMONY** |
 | GET | /api/testimonies | Return all testimonies |
-| **SENTENCES** |
-| GET | /api/sentences | Return all sentences |
-| GET | /api/sentences/:id | Return one sentence |
