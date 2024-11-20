@@ -172,11 +172,11 @@ VALUES
   (14, 7)
   ;
 
-INSERT INTO "testimonies" ("content", "title", "user_id")
+INSERT INTO "testimonies" ("title", "content", "user_id")
 VALUES
-  ('Quelle soirée !', 'J''ai franchement beaucoup aimé rencontrer de nouveaux amis lors de ma soirée burgers.', 11),
-  ('De belles rencontres...', 'Quel moment merveilleux ! Grand moment de partage lors de notre ballade en forêt. Merci Senior Love!', 2),
-  ('Un moment inoubliable !', 'Je me suis beaucoup amusé en compagnie de mes amis lors de notre week-end musical.', 1)
+  ('Quelle soirée !', 'J''ai franchement beaucoup aimé rencontrer de nouveaux amis lors de ma soirée burgers. Merci Senior Love de vous avoir permis de partager ce moment inoubliable !', 11),
+  ('De belles rencontres...', 'Quel moment merveilleux ! Grand moment de partage lors de notre ballade en forêt. Merci Senior Love ! Je recommande votre site auprès de mes amis. À celles et ceux qui hésitent... N''hesitez plus ! Senior Love, c''est pour de vrai ! ', 2),
+  ('Un moment inoubliable !', 'Je me suis beaucoup amusé en compagnie de mes amis lors de notre week-end musical. Plutôt sceptique au début, je suis maintenant convaincu de la qualité de ce site. Pouvoir trouver des évènements en fonction de nos centres d''intérêt est vraiment pratique. Merci beaucoup !', 1)
   ;
 
 -- COMMIT is to end the transaction --
