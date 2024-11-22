@@ -48,7 +48,7 @@ app.use("/api", apiRouter);
 
 const port = process.env.PORT || 3000; // Define the port to listen on
 
-// Start the server on port 3000
+// Start the server on port 3000 on localhost
 app.listen(port, () => {
 	console.log(`Server is running on port ${process.env.BASE_URL}`);
 });
